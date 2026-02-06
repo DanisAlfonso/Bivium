@@ -1,11 +1,47 @@
+import { useEffect, useState } from 'react';
+import { View, ActivityIndicator } from 'react-native';
 import { BilingualReader } from '../src/components/BilingualReader';
-import { chapter1 } from '../src/data/tod-in-venedig-ch1';
+import { loadChapter } from '../src/lib/bookLoader';
+import { Chapter } from '../src/types';
 import { router } from 'expo-router';
+import { useTheme } from '../src/hooks/useTheme';
 
 export default function ReaderScreen() {
+  const [chapter, setChapter] = useState<Chapter | null>(null);
+  const [loading, setLoading] = useState(true);
+  const { colors } = useTheme();
+
+  useEffect(() => {
+    loadChapter('tod-in-venedig', 'chapter-1')
+      .then((data) => {
+        setChapter(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Error loading chapter:', err);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background }}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
+
+  if (!chapter) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background }}>
+        {/* Podríamos mostrar un error aquí */}
+      </View>
+    );
+  }
+
   return (
     <BilingualReader
-      chapter={chapter1}
+      chapter={chapter}
       onBack={() => router.back()}
     />
   );

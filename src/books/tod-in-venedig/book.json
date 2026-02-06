@@ -1,0 +1,7 @@
+{
+  "id": "tod-in-venedig",
+  "title": { "de": "Der Tod in Venedig", "es": "La muerte en Venecia" },
+  "author": { "de": "Thomas Mann", "es": "Thomas Mann" },
+  "chapters": ["chapter-1"],
+  "coverImage": "cover.jpg"
+}

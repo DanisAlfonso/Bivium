@@ -63,8 +63,12 @@ src/
   hooks/
     useSettings.ts
     useProgress.ts
-  data/
-    tod-in-venedig-ch1.ts
+  lib/
+    bookLoader.ts      # JSON-Loader für Bücher
+  books/               # Buchdaten als JSON
+    tod-in-venedig/
+      book.json        # Metadaten
+      chapter-1.json   # Kapitel 1
 ```
 
 ## Entwicklung

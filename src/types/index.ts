@@ -13,6 +13,14 @@ export interface Chapter {
   segments: TextSegment[];
 }
 
+export interface Book {
+  id: string;
+  title: { de: string; es: string };
+  author: { de: string; es: string };
+  chapters: string[]; // IDs de capítulos
+  coverImage?: string;
+}
+
 export type FontFamily = 'merriweather' | 'lora' | 'literata' | 'crimson' | 'inter' | 'sourceSans' | 'lato' | 'jetbrains';
 
 export interface FontOption {
@@ -41,5 +49,5 @@ export interface UserSettings {
   theme: 'light' | 'dark' | 'system';
   viewMode: ViewMode;
   textAlignment: TextAlignment;
-  translationStyle: TranslationStyle; // 'inline' = debajo del texto, 'tooltip' = carta flotante
+  translationStyle: TranslationStyle;
 }
