@@ -1,110 +1,110 @@
-# Reglas de Segmentación para Lectio
+# Segmentation Rules for Lectio
 
-## Nivel Objetivo
-Esta app está diseñada para estudiantes de alemán con nivel **principiante-avanzado a intermedio** (B1-B2). Los segmentos deben ser lo suficientemente informativos para este nivel, sin ser ni demasiado fragmentados ni demasiado largos.
+## Target Level
+This app is designed for German language learners at **upper-beginner to intermediate** level (B1-B2). Segments should be informative enough for this level—neither too fragmented nor too long.
 
-## Principios Fundamentales
+## Fundamental Principles
 
-### 1. Tamaño de Segmentos
-- **Máximo 5 palabras** por segmento
-- **Mínimo 2-3 palabras** para palabras funcionales (artículos, preposiciones, pronombres, verbos auxiliares)
-- Una sola palabra solo si es un sustantivo o verbo con significado completo por sí mismo
+### 1. Segment Size
+- **Maximum 5 words** per segment
+- **Minimum 2-3 words** for functional words (articles, prepositions, pronouns, auxiliary verbs)
+- Single word only if it's a noun or verb with complete meaning by itself
 
-### 2. Evitar Segmentos Aislados de Palabras Funcionales
-❌ **INCORRECTO** para nivel intermedio:
+### 2. Avoid Isolated Functional Word Segments
+❌ **INCORRECT** for intermediate level:
 ```json
 { "german": ["hatte"], "spanish": ["había"] }
 { "german": ["das"], "spanish": ["que"] }
 { "german": ["an"], "spanish": ["en"] }
 ```
 
-✅ **CORRECTO** - Combinar con contexto:
+✅ **CORRECT** - Combine with context:
 ```json
 { "german": ["hatte", "an", "einem", "Frühlingsnachmittag"], "spanish": ["había", "en", "una", "tarde", "primaveral"] }
 { "german": ["das", "unserem", "Kontinent"], "spanish": ["que", "a", "nuestro", "continente"] }
 ```
 
-### 3. Unidad de Significado
-- Cada segmento debe tener **sentido completo por sí solo**
-- Debe ser una unidad lógica de texto que se pueda entender independientemente
-- Ejemplo: `["amtlich", "sein", "Name", "lautete,"]` → `["oficialmente", "su", "nombre", "era,"]`
+### 3. Unit of Meaning
+- Each segment must have **complete meaning on its own**
+- It should be a logical text unit that can be understood independently
+- Example: `["amtlich", "sein", "Name", "lautete,"]` → `["officially", "his", "name", "was,"]`
 
-### 4. Traducción Exacta y Coherente
-- El español debe corresponder **palabra por palabra** (o frase por frase) al alemán del segmento
-- Cada traducción debe tener **sentido gramatical propio**
-- Ejemplo correcto: `["Miene", "zeigte,"]` → `["faz", "mostraba,"]`
+### 4. Exact and Coherent Translation
+- Spanish must correspond **word-for-word** (or phrase-for-phrase) to the German segment
+- Each translation must have **its own grammatical meaning**
+- Correct example: `["Miene", "zeigte,"]` → `["expression", "showed,"]`
 
-### 5. Coherencia en Combinación
-- Al unir segmentos consecutivos, el español debe **fluir correctamente**
-- El orden puede cambiar entre idiomas, pero el significado debe mantenerse
+### 5. Coherence in Combination
+- When joining consecutive segments, the Spanish should **flow correctly**
+- Word order may change between languages, but meaning must be maintained
 
-### 6. Palabras Vacías (Empty Arrays)
-- Se permite `[]` en español cuando una palabra alemana no tiene traducción directa en ese contexto
-- Ejemplo: `["aus", "allein"]` → `["solo"]` ("aus" se integra en la construcción española)
+### 6. Empty Arrays (Missing Words)
+- `[]` is allowed in Spanish when a German word has no direct translation in that context
+- Example: `["aus", "allein"]` → `["alone"]` ("aus" is integrated into the Spanish construction)
 
-### 7. Puntuación
-- La puntuación debe alinearse con el **sentido** de la frase
-- Comas, puntos y otros signos deben ir donde corresponda en cada idioma
-- Ejemplo: `["zeigte,"]` → `["mostraba,"]` (la coma se mantiene)
+### 7. Punctuation
+- Punctuation should align with the **meaning** of the sentence
+- Commas, periods, and other marks should go where they belong in each language
+- Example: `["zeigte,"]` → `["showed,"]` (comma is preserved)
 
-### 8. Segmentación por Orden
-- Cuando el orden difiere entre alemán y español, segmentar de forma que cada unidad tenga correspondencia
-- Ejemplo: `"zu München aus allein"` se segmenta como `["zu", "München"]`, `["aus", "allein"]` → `["de", "Múnich"]`, `["solo"]`
+### 8. Segmentation by Word Order
+- When word order differs between German and Spanish, segment so each unit has correspondence
+- Example: `"zu München aus allein"` is segmented as `["zu", "München"]`, `["aus", "allein"]` → `["from", "Munich"]`, `["alone"]`
 
-## Ejemplos Correctos
+## Correct Examples
 
-### Sustantivos y nombres propios (pueden ir solos):
+### Nouns and proper nouns (can stand alone):
 ```json
 { "german": ["Gustav", "Aschenbach"], "spanish": ["Gustav", "Aschenbach"] }
-{ "german": ["Miene"], "spanish": ["faz"] }
-{ "german": ["Spaziergang"], "spanish": ["paseo"] }
+{ "german": ["Miene"], "spanish": ["expression"] }
+{ "german": ["Spaziergang"], "spanish": ["walk"] }
 ```
 
-### Verbos y auxiliares (siempre con contexto):
+### Verbs and auxiliaries (always with context):
 ```json
-{ "german": ["hatte", "an", "einem", "Frühlingsnachmittag"], "spanish": ["había", "en", "una", "tarde", "primaveral"] }
-{ "german": ["monatelang", "eine", "so", "gefahrdrohende"], "spanish": ["durante", "meses", "una", "tan", "amenazante"] }
-{ "german": ["zeigte,"], "spanish": ["mostraba,"] }
+{ "german": ["hatte", "an", "einem", "Frühlingsnachmittag"], "spanish": ["had", "on", "a", "spring", "afternoon"] }
+{ "german": ["monatelang", "eine", "so", "gefahrdrohende"], "spanish": ["for", "months", "such", "a", "threatening"] }
+{ "german": ["zeigte,"], "spanish": ["showed,"] }
 ```
 
-### Preposiciones y artículos (con sustantivos):
+### Prepositions and articles (with nouns):
 ```json
-{ "german": ["von", "seiner", "Wohnung"], "spanish": ["desde", "su", "vivienda"] }
-{ "german": ["in", "der", "Prinzregentenstraße"], "spanish": ["en", "la", "Prinzregentenstraße"] }
-{ "german": ["des", "Jahres"], "spanish": ["del", "año"] }
+{ "german": ["von", "seiner", "Wohnung"], "spanish": ["from", "his", "residence"] }
+{ "german": ["in", "der", "Prinzregentenstraße"], "spanish": ["on", "the", "Prinzregentenstraße"] }
+{ "german": ["des", "Jahres"], "spanish": ["of", "the", "year"] }
 ```
 
-## Verificación de Calidad
+## Quality Check
 
-Antes de considerar un segmento como válido, verificar:
-1. ¿Tiene suficientes palabras (mínimo 2-3 si son funcionales)? ✅
-2. ¿Tiene sentido por sí solo en alemán? ✅
-3. ¿Tiene sentido por sí solo en español? ✅
-4. ¿La traducción corresponde exactamente al alemán? ✅
-5. ¿Al unirlo con el anterior y siguiente, fluye correctamente? ✅
-6. ¿No excede las 5 palabras? ✅
+Before considering a segment as valid, verify:
+1. Does it have enough words (minimum 2-3 if functional)? ✅
+2. Does it make sense on its own in German? ✅
+3. Does it make sense on its own in Spanish? ✅
+4. Does the translation correspond exactly to the German? ✅
+5. When joined with previous and next, does it flow correctly? ✅
+6. Does it not exceed 5 words? ✅
 
-## Reglas de Excepción
+## Exception Rules
 
-Pueden ir solos:
-- **Nombres propios**: `["Aschenbach"]`
-- **Sustantivos concretos**: `["Spaziergang"]` → `["paseo"]`
-- **Interjecciones**: `["Ach!"]` → `["¡Ay!"]`
-- **Citas directas cortas**: `["Ja,"]` → `["Sí,"]`
+May stand alone:
+- **Proper nouns**: `["Aschenbach"]`
+- **Concrete nouns**: `["Spaziergang"]` → `["walk"]`
+- **Interjections**: `["Ach!"]` → `["Oh!"]`
+- **Short direct speech**: `["Ja,"]` → `["Yes,"]`
 
-NO deben ir solos:
-- **Verbos auxiliares**: ❌ `["hatte"]` → `["había"]`
-- **Preposiciones**: ❌ `["an"]` → `["en"]`
-- **Artículos**: ❌ `["das"]` → `["el/que"]`
-- **Pronombres**: ❌ `["ihm"]` → `["le"]`
-- **Conjunciones**: ❌ `["dass"]` → `["que"]`
+Should NOT stand alone:
+- **Auxiliary verbs**: ❌ `["hatte"]` → `["had"]`
+- **Prepositions**: ❌ `["an"]` → `["on"]`
+- **Articles**: ❌ `["das"]` → `["the/that"]`
+- **Pronouns**: ❌ `["ihm"]` → `["him"]`
+- **Conjunctions**: ❌ `["dass"]` → `["that"]`
 
-## Nota para el Editor
+## Note for the Editor
 
-Esta app es para **practicar lectura de alemán a nivel intermedio**. La segmentación debe facilitar:
-- Comprensión gradual del texto sin fragmentar demasiado
-- Aprendizaje de vocabulario en contexto significativo
-- Entendimiento de la estructura gramatical alemana
-- Traducción inmediata y precisa de cada unidad
+This app is for **practicing German reading at intermediate level**. Segmentation should facilitate:
+- Gradual text comprehension without excessive fragmentation
+- Vocabulary learning in meaningful context
+- Understanding of German grammatical structure
+- Immediate and accurate translation of each unit
 
-**Prioridad**: Equilibrio entre granularidad y contexto. El estudiante intermedio necesita ver palabras funcionales EN CONTEXTO, no aisladas.
+**Priority**: Balance between granularity and context. The intermediate learner needs to see functional words IN CONTEXT, not isolated.
