@@ -5,57 +5,66 @@ const chapterCache: Map<string, Chapter> = new Map();
 const bookCache: Map<string, Book> = new Map();
 
 /**
- * Carga un capítulo desde un archivo JSON
- * @param bookId - ID del libro (ej: 'tod-in-venedig')
- * @param chapterId - ID del capítulo (ej: 'chapter-1')
- * @returns Promise<Chapter>
+ * Carga un capítulo desde un archivo JSON usando require
+ * Nota: Metro bundler requiere rutas estáticas, por eso usamos require
  */
-export async function loadChapter(bookId: string, chapterId: string): Promise<Chapter> {
+export function loadChapter(bookId: string, chapterId: string): Promise<Chapter> {
   const cacheKey = `${bookId}/${chapterId}`;
   
   if (chapterCache.has(cacheKey)) {
-    return chapterCache.get(cacheKey)!;
+    return Promise.resolve(chapterCache.get(cacheKey)!);
   }
 
-  try {
-    // Importación dinámica del JSON
-    const module = await import(`../books/${bookId}/${chapterId}.json`);
-    const chapter: Chapter = module.default || module;
-    
-    chapterCache.set(cacheKey, chapter);
-    return chapter;
-  } catch (error) {
-    console.error(`Error loading chapter ${chapterId} from book ${bookId}:`, error);
-    throw new Error(`No se pudo cargar el capítulo ${chapterId}`);
-  }
+  return new Promise((resolve, reject) => {
+    try {
+      // Importación síncrona con require (compatible con Metro)
+      // Las rutas deben ser relativas y conocidas en tiempo de compilación
+      let chapter: Chapter;
+      
+      if (bookId === 'tod-in-venedig' && chapterId === 'chapter-1') {
+        chapter = require('../books/tod-in-venedig/chapter-1.json');
+      } else {
+        throw new Error(`Capítulo no encontrado: ${bookId}/${chapterId}`);
+      }
+      
+      chapterCache.set(cacheKey, chapter);
+      resolve(chapter);
+    } catch (error) {
+      console.error(`Error loading chapter ${chapterId} from book ${bookId}:`, error);
+      reject(new Error(`No se pudo cargar el capítulo ${chapterId}`));
+    }
+  });
 }
 
 /**
  * Carga la metadata de un libro
- * @param bookId - ID del libro
- * @returns Promise<Book>
  */
-export async function loadBook(bookId: string): Promise<Book> {
+export function loadBook(bookId: string): Promise<Book> {
   if (bookCache.has(bookId)) {
-    return bookCache.get(bookId)!;
+    return Promise.resolve(bookCache.get(bookId)!);
   }
 
-  try {
-    const module = await import(`../books/${bookId}/book.json`);
-    const book: Book = module.default || module;
-    
-    bookCache.set(bookId, book);
-    return book;
-  } catch (error) {
-    console.error(`Error loading book ${bookId}:`, error);
-    throw new Error(`No se pudo cargar el libro ${bookId}`);
-  }
+  return new Promise((resolve, reject) => {
+    try {
+      let book: Book;
+      
+      if (bookId === 'tod-in-venedig') {
+        book = require('../books/tod-in-venedig/book.json');
+      } else {
+        throw new Error(`Libro no encontrado: ${bookId}`);
+      }
+      
+      bookCache.set(bookId, book);
+      resolve(book);
+    } catch (error) {
+      console.error(`Error loading book ${bookId}:`, error);
+      reject(new Error(`No se pudo cargar el libro ${bookId}`));
+    }
+  });
 }
 
 /**
  * Carga todos los capítulos de un libro
- * @param bookId - ID del libro
- * @returns Promise<Chapter[]>
  */
 export async function loadAllChapters(bookId: string): Promise<Chapter[]> {
   const book = await loadBook(bookId);
@@ -71,11 +80,8 @@ export async function loadAllChapters(bookId: string): Promise<Chapter[]> {
 
 /**
  * Lista todos los libros disponibles
- * Nota: En el futuro esto podría venir de una API o base de datos
  */
 export async function listAvailableBooks(): Promise<{ id: string; title: { de: string; es: string }; author: { de: string; es: string } }[]> {
-  // Por ahora, lista hardcodeada de libros disponibles
-  // En el futuro esto podría escanear la carpeta books/
   return [
     {
       id: 'tod-in-venedig',
