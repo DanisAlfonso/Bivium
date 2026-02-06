@@ -9,7 +9,7 @@ import { useTheme } from '../src/hooks/useTheme';
 export default function ReaderScreen() {
   const [chapter, setChapter] = useState<Chapter | null>(null);
   const [loading, setLoading] = useState(true);
-  const { colors } = useTheme();
+  const { theme } = useTheme();
 
   useEffect(() => {
     loadChapter('tod-in-venedig', 'chapter-1')
@@ -25,15 +25,15 @@ export default function ReaderScreen() {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background }}>
-        <ActivityIndicator size="large" color={colors.primary} />
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.background }}>
+        <ActivityIndicator size="large" color={theme.accent} />
       </View>
     );
   }
 
   if (!chapter) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: theme.background }}>
         {/* Podríamos mostrar un error aquí */}
       </View>
     );

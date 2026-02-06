@@ -224,6 +224,7 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
 
   const currentFont = fontOptions.find(f => f.value === settings.fontFamily);
   const fontFamily = currentFont?.family.split(',')[0] || 'System';
+  const fontFamilyId = currentFont?.value || 'merriweather'; // ID para WebView
 
   const headerTranslateYValue = headerTranslateY.interpolate({
     inputRange: [0, 1],
@@ -283,7 +284,7 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
             onToggleReveal={toggleSegmentReveal}
             onDoubleTap={isImmersiveMode ? toggleHeader : undefined}
             theme={theme}
-            fontFamily={fontFamily}
+            fontFamily={fontFamilyId}
             fontSize={settings.fontSize}
             lineHeight={settings.lineHeight}
             isFirst={index === 0}
