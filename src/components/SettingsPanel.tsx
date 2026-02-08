@@ -50,6 +50,7 @@ export function SettingsPanel({
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
 
   const isImmersiveMode = viewMode === 'immersive';
+  const isParallelMode = viewMode === 'parallel';
 
   return (
     <Modal
@@ -171,7 +172,8 @@ export function SettingsPanel({
               </View>
             )}
 
-            {/* Text Alignment */}
+            {/* Text Alignment - Oculto en modo Paralelo */}
+            {!isParallelMode && (
             <View style={styles.section}>
               <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>Alineación del texto</Text>
               <View style={styles.alignmentContainer}>
@@ -213,6 +215,7 @@ export function SettingsPanel({
                 </TouchableOpacity>
               </View>
             </View>
+            )}
 
             {/* Font Family */}
             <View style={styles.section}>

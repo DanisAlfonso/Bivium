@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Platform } from 'react-native';
+import { View, Text, StyleSheet, Platform, Pressable } from 'react-native';
 import { WebView, WebViewMessageEvent } from 'react-native-webview';
 import { TextSegment, ViewMode, TextAlignment, TranslationStyle } from '../types';
 import { Theme } from '../constants/theme';
@@ -38,6 +38,7 @@ export function Paragraph({
   const [webViewHeight, setWebViewHeight] = useState(100);
   const webViewRef = useRef<WebView>(null);
   const previousRevealedId = useRef<string | null>(null);
+  const lastTapRef = useRef<number>(0);
   const getTextAlign = () => textAlignment === 'justify' ? 'justify' : 'left';
 
   // Obtener el nombre de fuente cargada para React Native Text
@@ -143,35 +144,59 @@ export function Paragraph({
       textAlign: isFirst ? 'center' : getTextAlign(),
     } as const;
 
+    const handlePress = () => {
+      const now = Date.now();
+      if (lastTapRef.current && now - lastTapRef.current < 300) {
+        onDoubleTap?.();
+        lastTapRef.current = 0;
+      } else {
+        lastTapRef.current = now;
+      }
+    };
+
     if (viewMode === 'german-only') {
       return (
-        <View style={[styles.paragraph, isFirst && styles.firstParagraph]}>
+        <Pressable onPress={handlePress} style={[styles.paragraph, isFirst && styles.firstParagraph]}>
           <Text style={[styles.paragraphText, baseTextStyle, { color: theme.germanText }]} {...androidTextProps}>
             {germanParagraph}
           </Text>
-        </View>
+        </Pressable>
       );
     }
 
     if (viewMode === 'spanish-only') {
       return (
-        <View style={[styles.paragraph, isFirst && styles.firstParagraph]}>
+        <Pressable onPress={handlePress} style={[styles.paragraph, isFirst && styles.firstParagraph]}>
           <Text style={[styles.paragraphText, baseTextStyle, { color: theme.spanishText }]} {...androidTextProps}>
             {spanishParagraph}
           </Text>
-        </View>
+        </Pressable>
       );
     }
 
+    // Modo Paralelo: mostrar segmento por segmento (alemán + español)
     return (
-      <View style={[styles.paragraph, isFirst && styles.firstParagraph]}>
-        <Text style={[styles.germanParagraphText, baseTextStyle, { color: theme.germanText }]} {...androidTextProps}>
-          {germanParagraph}
-        </Text>
-        <Text style={[styles.spanishParagraphText, baseTextStyle, { color: theme.spanishText, fontSize: fontSize * 0.92 }]} {...androidTextProps}>
-          {spanishParagraph}
-        </Text>
-      </View>
+      <Pressable onPress={handlePress} style={[styles.parallelContainer, isFirst && styles.firstParagraph]}>
+        {segments.map((segment, index) => {
+          const isParagraphStart = segment.isParagraphStart;
+          return (
+            <View 
+              key={segment.id} 
+              style={[
+                styles.segmentPair,
+                isParagraphStart && styles.paragraphStartSpacing
+              ]}
+            >
+              <Text style={[styles.germanSegmentText, baseTextStyle, { color: theme.germanText, textAlign: 'left' }]} {...androidTextProps}>
+                {segment.german.join(' ')}
+              </Text>
+              <Text style={[styles.spanishSegmentText, baseTextStyle, { color: theme.spanishText, fontSize: fontSize * 0.80, textAlign: 'left', opacity: 0.7 }]} {...androidTextProps}>
+                {segment.spanish.join(' ')}
+              </Text>
+            </View>
+          );
+        })}
+      </Pressable>
     );
   }
 
@@ -551,5 +576,28 @@ const styles = StyleSheet.create({
   spanishParagraphText: {
     fontStyle: 'italic',
     width: '100%',
+  },
+  segmentContainer: {
+    marginBottom: 12,
+    width: '100%',
+  },
+  germanSegmentText: {
+    marginBottom: 0,
+    width: '100%',
+  },
+  spanishSegmentText: {
+    fontStyle: 'italic',
+    width: '100%',
+    marginTop: -6,
+  },
+  parallelContainer: {
+    width: '100%',
+  },
+  segmentPair: {
+    marginBottom: -2,
+    width: '100%',
+  },
+  paragraphStartSpacing: {
+    marginTop: 16,
   },
 });

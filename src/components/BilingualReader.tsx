@@ -99,8 +99,6 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
   }, [headerTranslateY]);
 
   const scheduleHide = useCallback(() => {
-    if (!isImmersiveMode) return;
-    
     if (hideTimeoutRef.current) {
       clearTimeout(hideTimeoutRef.current);
     }
@@ -115,11 +113,9 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
         setShowHint(false);
       }, 4000);
     }, 2500);
-  }, [isImmersiveMode, animateHeader]);
+  }, [animateHeader]);
 
   const toggleHeader = useCallback(() => {
-    if (!isImmersiveMode) return;
-    
     if (headerVisible) {
       animateHeader(false);
       if (hideTimeoutRef.current) {
@@ -129,18 +125,11 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
       animateHeader(true);
       scheduleHide();
     }
-  }, [isImmersiveMode, headerVisible, animateHeader, scheduleHide]);
+  }, [headerVisible, animateHeader, scheduleHide]);
 
   useEffect(() => {
-    if (isImmersiveMode) {
-      animateHeader(true);
-      scheduleHide();
-    } else {
-      animateHeader(true);
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current);
-      }
-    }
+    animateHeader(true);
+    scheduleHide();
     
     return () => {
       if (hideTimeoutRef.current) {
@@ -150,7 +139,7 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
         clearTimeout(hintTimeoutRef.current);
       }
     };
-  }, [isImmersiveMode, animateHeader, scheduleHide]);
+  }, [animateHeader, scheduleHide]);
 
   // Reset flag al montar el componente
   useEffect(() => {
@@ -252,7 +241,7 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
         />
       </Animated.View>
 
-      {isImmersiveMode && !headerVisible && showHint && (
+      {!headerVisible && showHint && (
         <View style={[styles.hintContainer, { backgroundColor: theme.surface + 'CC' }]}>
           <Text style={[styles.hintText, { color: theme.textSecondary }]}>
             Doble tap para controles
@@ -282,7 +271,7 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
             translationStyle={settings.translationStyle}
             revealedSegmentId={revealedSegmentId}
             onToggleReveal={toggleSegmentReveal}
-            onDoubleTap={isImmersiveMode ? toggleHeader : undefined}
+            onDoubleTap={toggleHeader}
             theme={theme}
             fontFamily={fontFamilyId}
             fontSize={settings.fontSize}
