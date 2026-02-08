@@ -63,7 +63,10 @@ export default function LibraryScreen() {
   };
 
   const handleOpenBook = (bookId: string) => {
-    router.push('/reader');
+    router.push({
+      pathname: '/chapters',
+      params: { bookId }
+    });
   };
 
   const formatLastRead = (timestamp: number) => {

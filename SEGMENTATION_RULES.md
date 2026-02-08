@@ -1,110 +1,145 @@
 # Segmentation Rules for Lectio
 
-## Target Level
-This app is designed for German language learners at **upper-beginner to intermediate** level (B1-B2). Segments should be informative enough for this level—neither too fragmented nor too long.
+## Core Principle
+**Segment at syntactic boundaries, never in the middle of a syntactic unit.**
 
-## Fundamental Principles
+A segment must form a **complete grammatical unit** that makes sense on its own. Do not split adjectives from their nouns, verbs from their objects, or break apart any syntactic group.
 
-### 1. Segment Size
-- **Maximum 5 words** per segment
-- **Minimum 2-3 words** for functional words (articles, prepositions, pronouns, auxiliary verbs)
-- Single word only if it's a noun or verb with complete meaning by itself
+---
 
-### 2. Avoid Isolated Functional Word Segments
-❌ **INCORRECT** for intermediate level:
+## Fundamental Rules
+
+### 1. Syntactic Unit Integrity (CRITICAL)
+**Never separate elements that form a syntactic unit:**
+
+❌ **INCORRECT** - Split adjective from noun:
 ```json
-{ "german": ["hatte"], "spanish": ["había"] }
-{ "german": ["das"], "spanish": ["que"] }
-{ "german": ["an"], "spanish": ["en"] }
+{ "german": ["monatelang", "eine", "so", "gefahrdrohende"], "spanish": ["durante", "meses", "una", "tan", "amenazante"] }
+{ "german": ["Miene", "zeigte,"], "spanish": ["faz", "mostraba,"] }
 ```
 
-✅ **CORRECT** - Combine with context:
+✅ **CORRECT** - Keep syntactic unit together:
 ```json
-{ "german": ["hatte", "an", "einem", "Frühlingsnachmittag"], "spanish": ["había", "en", "una", "tarde", "primaveral"] }
-{ "german": ["das", "unserem", "Kontinent"], "spanish": ["que", "a", "nuestro", "continente"] }
+{ "german": ["monatelang", "eine", "so", "gefahrdrohende", "Miene", "zeigte,"], "spanish": ["durante", "meses", "una", "tan", "amenazante", "faz", "mostraba,"] }
 ```
 
-### 3. Unit of Meaning
-- Each segment must have **complete meaning on its own**
-- It should be a logical text unit that can be understood independently
-- Example: `["amtlich", "sein", "Name", "lautete,"]` → `["officially", "his", "name", "was,"]`
+### 2. Where to Cut
+Cut at these natural boundaries:
+
+- **After punctuation** that marks clause boundaries (comma, semicolon, colon)
+- **After complete subordinate clauses**
+- **After parenthetical/incidental phrases**
+- **At subject transitions** when the sentence structure changes
+- **Between coordinate clauses** joined by conjunctions like "und", "aber", "denn"
+
+### 3. Keep Together (Syntactic Groups)
+
+**Adjective + Noun:**
+```json
+{ "german": ["der", "geduldige", "Künstler"], "spanish": ["el", "paciente", "artista"] }
+{ "german": ["eine", "so", "gefahrdrohende", "Miene"], "spanish": ["una", "tan", "amenazante", "faz"] }
+```
+
+**Verb + Objects/Complements:**
+```json
+{ "german": ["einen", "Spaziergang", "unternommen"], "spanish": ["un", "paseo", "emprendió"] }
+{ "german": ["das", "Freie", "gesucht"], "spanish": ["buscó", "el", "aire", "libre"] }
+```
+
+**Preposition + Full Complement:**
+```json
+{ "german": ["von", "seiner", "Wohnung"], "spanish": ["desde", "su", "vivienda"] }
+{ "german": ["in", "der", "Prinzregentenstraße"], "spanish": ["en", "la", "Prinzregentenstraße"] }
+```
+
+**Relative clauses (can be long but keep together):**
+```json
+{ "german": ["der", "in", "langem", "Fleiß", "den", "figurenreichen"], "spanish": ["que", "con", "largo", "esfuerzo", "el", "figurativo"] }
+```
 
 ### 4. Exact and Coherent Translation
-- Spanish must correspond **word-for-word** (or phrase-for-phrase) to the German segment
+- Spanish must correspond **word-for-word** to the German segment
 - Each translation must have **its own grammatical meaning**
-- Correct example: `["Miene", "zeigte,"]` → `["expression", "showed,"]`
+- When word order differs between languages, segment so each unit has correspondence
 
-### 5. Coherence in Combination
-- When joining consecutive segments, the Spanish should **flow correctly**
-- Word order may change between languages, but meaning must be maintained
+### 5. Segment Length
+There is **no fixed word limit**. A segment can be:
+- **1 word**: Standalone proper nouns, complete verbs, interjections
+- **3-6 words**: Standard syntactic units
+- **8-12 words**: Complex subordinate clauses that form a complete unit
+
+The guiding principle is **grammatical completeness**, not word count.
 
 ### 6. Empty Arrays (Missing Words)
-- `[]` is allowed in Spanish when a German word has no direct translation in that context
-- Example: `["aus", "allein"]` → `["alone"]` ("aus" is integrated into the Spanish construction)
+`[]` is allowed in Spanish when a German word has no direct translation in that context.
+Example: `["aus", "allein"]` → `["alone"]` ("aus" is integrated into the Spanish construction)
 
-### 7. Punctuation
-- Punctuation should align with the **meaning** of the sentence
-- Commas, periods, and other marks should go where they belong in each language
-- Example: `["zeigte,"]` → `["showed,"]` (comma is preserved)
-
-### 8. Segmentation by Word Order
-- When word order differs between German and Spanish, segment so each unit has correspondence
-- Example: `"zu München aus allein"` is segmented as `["zu", "München"]`, `["aus", "allein"]` → `["from", "Munich"]`, `["alone"]`
+---
 
 ## Correct Examples
 
 ### Nouns and proper nouns (can stand alone):
 ```json
 { "german": ["Gustav", "Aschenbach"], "spanish": ["Gustav", "Aschenbach"] }
-{ "german": ["Miene"], "spanish": ["expression"] }
-{ "german": ["Spaziergang"], "spanish": ["walk"] }
+{ "german": ["Spaziergang"], "spanish": ["paseo"] }
 ```
 
-### Verbs and auxiliaries (always with context):
+### Complete verb phrases:
 ```json
-{ "german": ["hatte", "an", "einem", "Frühlingsnachmittag"], "spanish": ["had", "on", "a", "spring", "afternoon"] }
-{ "german": ["monatelang", "eine", "so", "gefahrdrohende"], "spanish": ["for", "months", "such", "a", "threatening"] }
-{ "german": ["zeigte,"], "spanish": ["showed,"] }
+{ "german": ["hatte", "an", "einem", "Frühlingsnachmittag", "einen", "Spaziergang", "unternommen"], "spanish": ["había", "en", "una", "tarde", "primaveral", "un", "paseo", "emprendido"] }
 ```
 
-### Prepositions and articles (with nouns):
+### Subordinate clauses:
 ```json
-{ "german": ["von", "seiner", "Wohnung"], "spanish": ["from", "his", "residence"] }
-{ "german": ["in", "der", "Prinzregentenstraße"], "spanish": ["on", "the", "Prinzregentenstraße"] }
-{ "german": ["des", "Jahres"], "spanish": ["of", "the", "year"] }
+{ "german": ["wie", "seit", "seinem", "fünfzigsten", "Geburtstag", "amtlich", "sein", "Name", "lautete"], "spanish": ["pues", "desde", "su", "quincuagésimo", "cumpleaños", "oficialmente", "su", "nombre", "era"] }
 ```
+
+### Lists of adjectives:
+```json
+{ "german": ["Behutsamkeit,"], "spanish": ["prudencia,"] }
+{ "german": ["Umsicht,"], "spanish": ["circunspección,"] }
+{ "german": ["Eindringlichkeit"], "spanish": ["intensidad"] }
+```
+
+---
 
 ## Quality Check
 
 Before considering a segment as valid, verify:
-1. Does it have enough words (minimum 2-3 if functional)? ✅
+1. Does it contain a **complete syntactic unit** (not a fragment)? ✅
 2. Does it make sense on its own in German? ✅
 3. Does it make sense on its own in Spanish? ✅
 4. Does the translation correspond exactly to the German? ✅
 5. When joined with previous and next, does it flow correctly? ✅
-6. Does it not exceed 5 words? ✅
+6. Did I cut **between** syntactic groups, not **within** one? ✅
+
+---
 
 ## Exception Rules
 
 May stand alone:
 - **Proper nouns**: `["Aschenbach"]`
-- **Concrete nouns**: `["Spaziergang"]` → `["walk"]`
+- **Complete standalone nouns**: `["Spaziergang"]` → `["paseo"]`
+- **Complete standalone verbs**: `["wob"]` (wove) → `["tejió"]`
 - **Interjections**: `["Ach!"]` → `["Oh!"]`
-- **Short direct speech**: `["Ja,"]` → `["Yes,"]`
+- **Short direct speech**: `["Ja,"]` → `["Sí,"]`
+- **List items** (when clearly enumerated): `["Behutsamkeit,"]`
 
 Should NOT stand alone:
-- **Auxiliary verbs**: ❌ `["hatte"]` → `["had"]`
-- **Prepositions**: ❌ `["an"]` → `["on"]`
-- **Articles**: ❌ `["das"]` → `["the/that"]`
-- **Pronouns**: ❌ `["ihm"]` → `["him"]`
-- **Conjunctions**: ❌ `["dass"]` → `["that"]`
+- **Auxiliary verbs without context**: ❌ `["hatte"]`
+- **Prepositions without complements**: ❌ `["an"]`
+- **Articles alone**: ❌ `["das"]`
+- **Adjectives without nouns**: ❌ `["gefahrdrohende"]`
+- **Subordinating conjunctions alone**: ❌ `["dass"]`
+
+---
 
 ## Note for the Editor
 
 This app is for **practicing German reading at intermediate level**. Segmentation should facilitate:
-- Gradual text comprehension without excessive fragmentation
-- Vocabulary learning in meaningful context
-- Understanding of German grammatical structure
-- Immediate and accurate translation of each unit
+- Understanding of **German syntactic structure**
+- Vocabulary learning in **meaningful grammatical context**
+- Natural reading flow without excessive fragmentation
+- Immediate and accurate translation of each **complete unit**
 
-**Priority**: Balance between granularity and context. The intermediate learner needs to see functional words IN CONTEXT, not isolated.
+**Priority**: Grammatical coherence over arbitrary word limits. Never split a syntactic group just to meet a word count.

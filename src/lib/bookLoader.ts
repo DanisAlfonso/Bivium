@@ -23,6 +23,8 @@ export function loadChapter(bookId: string, chapterId: string): Promise<Chapter>
       
       if (bookId === 'tod-in-venedig' && chapterId === 'chapter-1') {
         chapter = require('../books/tod-in-venedig/chapter-1.json');
+      } else if (bookId === 'tod-in-venedig' && chapterId === 'chapter-2') {
+        chapter = require('../books/tod-in-venedig/chapter-2.json');
       } else {
         throw new Error(`Capítulo no encontrado: ${bookId}/${chapterId}`);
       }

@@ -1,0 +1,311 @@
+{
+  "id": "tod-in-venedig-ch2",
+  "title": {
+    "de": "Zweites Kapitel",
+    "es": "Capítulo Segundo"
+  },
+  "author": {
+    "de": "Thomas Mann",
+    "es": "Thomas Mann"
+  },
+  "bookTitle": {
+    "de": "Der Tod in Venedig",
+    "es": "La muerte en Venecia"
+  },
+  "segments": [
+    {
+      "id": "ch2-p1-s1",
+      "german": ["Zweites", "Kapitel"],
+      "spanish": ["Capítulo", "Segundo"],
+      "isParagraphStart": true
+    },
+    {
+      "id": "ch2-p2-s1",
+      "german": ["Der", "Autor", "der", "klaren", "und", "mächtigen", "Prosa-Epopöe", "vom", "Leben", "Friedrichs", "von", "Preußen;"],
+      "spanish": ["El", "autor", "de", "la", "clara", "y", "poderosa", "epopeya", "en", "prosa", "de", "la", "vida", "de", "Federico", "de", "Prusia;"],
+      "isParagraphStart": true
+    },
+    {
+      "id": "ch2-p2-s2",
+      "german": ["der", "geduldige", "Künstler,"],
+      "spanish": ["el", "paciente", "artista,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s3",
+      "german": ["der", "in", "langem", "Fleiß,"],
+      "spanish": ["que", "con", "largo", "esfuerzo,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s4",
+      "german": ["den", "figurenreichen,"],
+      "spanish": ["el", "figurativo,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s5",
+      "german": ["so", "vielerlei", "Menschenschicksal", "im", "Schatten", "einer", "Idee", "versammelnden,"],
+      "spanish": ["tan", "variadas", "humanas", "suertes", "a", "la", "sombra", "de", "una", "idea", "reuniendo,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s6",
+      "german": ["Romanteppich,"],
+      "spanish": ["tapiz", "romántico,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s7",
+      "german": ["»Maja«", "mit", "Namen,"],
+      "spanish": ["»Maya«", "de", "nombre,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s8",
+      "german": ["wob;"],
+      "spanish": ["tejió;"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s9",
+      "german": ["der", "Schöpfer", "jener", "starken", "Erzählung,"],
+      "spanish": ["el", "creador", "de", "aquella", "fuerte", "narración,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s10",
+      "german": ["die", "»Ein", "Elender«", "überschrieben", "ist"],
+      "spanish": ["que", "»Un", "Desdichado«", "titulada", "es"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s11",
+      "german": ["und", "einer", "ganzen", "dankbaren", "Jugend"],
+      "spanish": ["y", "a", "toda", "una", "agradecida", "juventud"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s12",
+      "german": ["die", "Möglichkeit", "sittlicher", "Entschlossenheit"],
+      "spanish": ["la", "posibilidad", "de", "resolución", "moral"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s13",
+      "german": ["jenseits"],
+      "spanish": ["más", "allá"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s14",
+      "german": ["der", "tiefsten", "Erkenntnis", "zeigte;"],
+      "spanish": ["del", "más", "profundo", "conocimiento", "mostró;"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s15",
+      "german": ["der", "Verfasser", "endlich"],
+      "spanish": ["el", "autor", "finalmente"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s16",
+      "german": ["(und", "damit", "sind", "die", "Werke", "seiner", "Reifezeit", "kurz", "bezeichnet),"],
+      "spanish": ["(y", "con", "ello", "se", "designan", "brevemente", "las", "obras", "de", "su", "madurez),"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s17",
+      "german": ["der", "leidenschaftlichen", "Abhandlung", "über", "»Geist", "und", "Kunst«,"],
+      "spanish": ["del", "apasionado", "tratado", "sobre", "»Espíritu", "y", "Arte«,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s18",
+      "german": ["deren", "ordnende", "Kraft"],
+      "spanish": ["cuya", "ordenadora", "fuerza"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s19",
+      "german": ["und", "antithetische", "Beredsamkeit"],
+      "spanish": ["y", "antitética", "elocuencia"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s20",
+      "german": ["ernste", "Beurteiler", "vermochte,"],
+      "spanish": ["serios", "jueces", "podía,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s21",
+      "german": ["sie", "unmittelbar", "neben", "Schillers", "Raisonnement"],
+      "spanish": ["ponerla", "inmediatamente", "junto", "al", "razonamiento", "de", "Schiller"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s22",
+      "german": ["über", "naive", "und", "sentimentalische", "Dichtung", "zu", "stellen:"],
+      "spanish": ["sobre", "la", "poesía", "ingenua", "y", "sentimental,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s23",
+      "german": ["Gustav", "Aschenbach", "also"],
+      "spanish": ["Gustav", "Aschenbach", "pues"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s24",
+      "german": ["war", "zu", "L.,", "einer", "Kreisstadt", "der", "Provinz", "Schlesien,"],
+      "spanish": ["fue", "en", "L.,", "una", "ciudad", "de", "la", "provincia", "de", "Silesia,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p2-s25",
+      "german": ["als", "Sohn", "eines", "höheren", "Justizbeamten", "geboren."],
+      "spanish": ["como", "hijo", "de", "un", "alto", "funcionario", "judicial", "nacido."],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p3-s1",
+      "german": ["Seine", "Vorfahren", "waren", "Offiziere,"],
+      "spanish": ["Sus", "antepasados", "fueron", "oficiales,"],
+      "isParagraphStart": true
+    },
+    {
+      "id": "ch2-p3-s2",
+      "german": ["Richter,"],
+      "spanish": ["jueces,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p3-s3",
+      "german": ["Verwaltungsfunktionäre", "gewesen,"],
+      "spanish": ["funcionarios", "administrativos", "sido,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p3-s4",
+      "german": ["Männer,"],
+      "spanish": ["hombres,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p3-s5",
+      "german": ["die", "im", "Dienste", "des", "Königs,"],
+      "spanish": ["que", "al", "servicio", "del", "rey,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p3-s6",
+      "german": ["des", "Staates", "ihr", "straffes,"],
+      "spanish": ["del", "Estado", "su", "estricta,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p3-s7",
+      "german": ["anständig", "karges", "Leben", "geführt", "hatten."],
+      "spanish": ["honesta", "frugal", "vida", "habían", "llevado."],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p4-s1",
+      "german": ["Innigere", "Geistigkeit", "hatte", "sich", "einmal,"],
+      "spanish": ["Mayor", "espiritualidad", "se", "había", "una", "vez,"],
+      "isParagraphStart": true
+    },
+    {
+      "id": "ch2-p4-s2",
+      "german": ["in", "der", "Person", "eines", "Predigers,"],
+      "spanish": ["en", "la", "persona", "de", "un", "predicador,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p4-s3",
+      "german": ["unter", "ihnen", "verkörpert;"],
+      "spanish": ["entre", "ellos", "encarnado;"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p4-s4",
+      "german": ["rascheres,"],
+      "spanish": ["más", "rápida,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p4-s5",
+      "german": ["sinnlicheres", "Blut", "war", "der", "Familie"],
+      "spanish": ["más", "sensual", "sangre", "era", "a", "la", "familia"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p4-s6",
+      "german": ["in", "der", "vorigen", "Generation"],
+      "spanish": ["en", "la", "pasada", "generación"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p4-s7",
+      "german": ["durch", "die", "Mutter", "des", "Dichters,"],
+      "spanish": ["por", "la", "madre", "del", "poeta,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p4-s8",
+      "german": ["Tochter", "eines", "böhmischen", "Kapellmeisters,"],
+      "spanish": ["hija", "de", "un", "bohemio", "maestro", "de", "capilla,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p4-s9",
+      "german": ["zugekommen."],
+      "spanish": ["llegada."],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p5-s1",
+      "german": ["Von", "ihr", "stammten", "die", "Merkmale"],
+      "spanish": ["De", "ella", "provenían", "las", "señales"],
+      "isParagraphStart": true
+    },
+    {
+      "id": "ch2-p5-s2",
+      "german": ["fremder", "Rasse", "in", "seinem", "Äußern."],
+      "spanish": ["de", "raza", "extraña", "en", "su", "exterior."],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p6-s1",
+      "german": ["Die", "Vermählung", "dienstlich", "nüchterner", "Gewissenhaftigkeit"],
+      "spanish": ["El", "matrimonio", "de", "funcionaria", "sobriedad", "concienzuda"],
+      "isParagraphStart": true
+    },
+    {
+      "id": "ch2-p6-s2",
+      "german": ["mit", "dunkleren,"],
+      "spanish": ["con", "más", "oscuras,"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p6-s3",
+      "german": ["feurigeren", "Impulsen"],
+      "spanish": ["más", "fogosas", "impulsos"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p6-s4",
+      "german": ["ließ", "einen", "Künstler"],
+      "spanish": ["hizo", "surgir", "un", "artista"],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch2-p6-s5",
+      "german": ["und", "diesen", "besonderen", "Künstler", "erstehen."],
+      "spanish": ["y", "hizo", "surgir", "este", "especial", "artista."],
+      "isParagraphStart": false
+    }
+  ]
+}
