@@ -157,7 +157,7 @@ export function Paragraph({
     if (viewMode === 'german-only') {
       return (
         <Pressable onPress={handlePress} style={[styles.paragraph, isFirst && styles.firstParagraph]}>
-          <Text style={[styles.paragraphText, baseTextStyle, { color: theme.germanText }]} {...androidTextProps}>
+          <Text style={[styles.paragraphText, baseTextStyle, { color: theme.germanText }]} {...androidTextProps} selectable={true}>
             {germanParagraph}
           </Text>
         </Pressable>
@@ -167,7 +167,7 @@ export function Paragraph({
     if (viewMode === 'spanish-only') {
       return (
         <Pressable onPress={handlePress} style={[styles.paragraph, isFirst && styles.firstParagraph]}>
-          <Text style={[styles.paragraphText, baseTextStyle, { color: theme.spanishText }]} {...androidTextProps}>
+          <Text style={[styles.paragraphText, baseTextStyle, { color: theme.spanishText }]} {...androidTextProps} selectable={true}>
             {spanishParagraph}
           </Text>
         </Pressable>
@@ -187,10 +187,10 @@ export function Paragraph({
                 isParagraphStart && styles.paragraphStartSpacing
               ]}
             >
-              <Text style={[styles.germanSegmentText, baseTextStyle, { color: theme.germanText, textAlign: 'left' }]} {...androidTextProps}>
+              <Text style={[styles.germanSegmentText, baseTextStyle, { color: theme.germanText, textAlign: 'left' }]} {...androidTextProps} selectable={true}>
                 {segment.german.join(' ')}
               </Text>
-              <Text style={[styles.spanishSegmentText, baseTextStyle, { color: theme.spanishText, fontSize: fontSize * 0.80, textAlign: 'left', opacity: 0.7 }]} {...androidTextProps}>
+              <Text style={[styles.spanishSegmentText, baseTextStyle, { color: theme.spanishText, fontSize: fontSize * 0.80, textAlign: 'left', opacity: 0.7 }]} {...androidTextProps} selectable={true}>
                 {segment.spanish.join(' ')}
               </Text>
             </View>
