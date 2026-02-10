@@ -1,8 +1,14 @@
+export interface WordMapping {
+  de: number | number[];
+  es: number | number[];
+}
+
 export interface TextSegment {
   id: string;
   german: string[];
   spanish: string[];
   isParagraphStart?: boolean;
+  mapping?: WordMapping[];
 }
 
 export interface Chapter {

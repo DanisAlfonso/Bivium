@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Platform, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Platform, Pressable, TouchableOpacity } from 'react-native';
 import { WebView, WebViewMessageEvent } from 'react-native-webview';
-import { TextSegment, ViewMode, TextAlignment, TranslationStyle } from '../types';
+import { TextSegment, ViewMode, TextAlignment, TranslationStyle, WordMapping } from '../types';
 import { Theme } from '../constants/theme';
 import { webFontCSS } from '../constants/webFonts';
 import { fontOptions } from '../constants/fonts';
@@ -36,6 +36,7 @@ export function Paragraph({
   isFirst,
 }: ParagraphProps) {
   const [webViewHeight, setWebViewHeight] = useState(100);
+  const [highlightedWord, setHighlightedWord] = useState<{segmentId: string, wordIndex: number, lang: 'de' | 'es'} | null>(null);
   const webViewRef = useRef<WebView>(null);
   const previousRevealedId = useRef<string | null>(null);
   const lastTapRef = useRef<number>(0);
@@ -48,6 +49,26 @@ export function Paragraph({
       return fontOption.family.split(',')[0];
     }
     return 'System';
+  };
+
+  // Función para obtener los índices mapeados (todas las palabras del grupo)
+  const getMappedIndices = (mapping: WordMapping[] | undefined, wordIndex: number, lang: 'de' | 'es'): number[] => {
+    if (!mapping) return [];
+    for (const map of mapping) {
+      const srcIndices = Array.isArray(map[lang]) ? map[lang] : [map[lang]];
+      if (srcIndices.includes(wordIndex)) {
+        const targetLang = lang === 'de' ? 'es' : 'de';
+        const targetIndices = Array.isArray(map[targetLang]) ? map[targetLang] : [map[targetLang]];
+        return targetIndices;
+      }
+    }
+    return [];
+  };
+
+  // Función para verificar si una palabra tiene mapping
+  const hasMappingForWord = (mapping: WordMapping[] | undefined, wordIndex: number, lang: 'de' | 'es'): boolean => {
+    if (!mapping) return false;
+    return getMappedIndices(mapping, wordIndex, lang).length > 0;
   };
 
   // Hooks deben llamarse ANTES de cualquier return condicional
@@ -175,24 +196,99 @@ export function Paragraph({
     }
 
     // Modo Paralelo: mostrar segmento por segmento (alemán + español)
+    const handleWordTouch = (segment: TextSegment, wordIndex: number, lang: 'de' | 'es') => {
+      if (segment.mapping && segment.mapping.length > 0) {
+        // Si la misma palabra ya está subrayada, la quitamos (toggle)
+        if (
+          highlightedWord &&
+          highlightedWord.segmentId === segment.id &&
+          highlightedWord.wordIndex === wordIndex &&
+          highlightedWord.lang === lang
+        ) {
+          setHighlightedWord(null);
+        } else {
+          // Si es una palabra diferente, reemplazamos el subrayado
+          setHighlightedWord({ segmentId: segment.id, wordIndex, lang });
+        }
+      }
+    };
+
+    const isWordHighlighted = (segmentId: string, wordIndex: number, lang: 'de' | 'es'): boolean => {
+      if (!highlightedWord || highlightedWord.segmentId !== segmentId) return false;
+
+      if (highlightedWord.lang === lang) {
+        return highlightedWord.wordIndex === wordIndex;
+      } else {
+        // Check if this word is in the mapped indices from the highlighted word
+        const mappedIndices = getMappedIndices(
+          segments.find(s => s.id === segmentId)?.mapping,
+          highlightedWord.wordIndex,
+          highlightedWord.lang
+        );
+        return mappedIndices.includes(wordIndex);
+      }
+    };
+
     return (
       <Pressable onPress={handlePress} style={[styles.parallelContainer, isFirst && styles.firstParagraph]}>
         {segments.map((segment, index) => {
           const isParagraphStart = segment.isParagraphStart;
+          const hasMapping = segment.mapping && segment.mapping.length > 0;
+
           return (
-            <View 
-              key={segment.id} 
+            <View
+              key={segment.id}
               style={[
                 styles.segmentPair,
                 isParagraphStart && styles.paragraphStartSpacing
               ]}
             >
-              <Text style={[styles.germanSegmentText, baseTextStyle, { color: theme.germanText, textAlign: 'left' }]} {...androidTextProps} selectable={true}>
-                {segment.german.join(' ')}
+              {/* Texto alemán con palabras individuales tocables */}
+              <Text style={[styles.germanSegmentText, baseTextStyle, { color: theme.germanText, textAlign: 'left' }]} {...androidTextProps} selectable={!hasMapping}>
+                {segment.german.map((word, wordIdx) => {
+                  const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'de');
+                  const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'de');
+
+                  return (
+                    <Text
+                      key={`de-${wordIdx}`}
+                      onPress={hasWordMapping ? () => handleWordTouch(segment, wordIdx, 'de') : undefined}
+                      style={{
+                        textDecorationLine: isHighlighted ? 'underline' : 'none',
+                        textDecorationColor: theme.accent,
+                        textDecorationStyle: 'solid',
+                        color: isHighlighted ? theme.accent : theme.germanText,
+                      }}
+                    >
+                      {word + ' '}
+                    </Text>
+                  );
+                })}
               </Text>
-              <Text style={[styles.spanishSegmentText, baseTextStyle, { color: theme.spanishText, fontSize: fontSize * 0.80, textAlign: 'left', opacity: 0.7 }]} {...androidTextProps} selectable={true}>
-                {segment.spanish.join(' ')}
+
+              {/* Texto español con palabras individuales tocables */}
+              <Text style={[styles.spanishSegmentText, baseTextStyle, { color: theme.spanishText, fontSize: fontSize * 0.80, textAlign: 'left', opacity: 0.7 }]} {...androidTextProps} selectable={!hasMapping}>
+                {segment.spanish.map((word, wordIdx) => {
+                  const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'es');
+                  const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'es');
+
+                  return (
+                    <Text
+                      key={`es-${wordIdx}`}
+                      onPress={hasWordMapping ? () => handleWordTouch(segment, wordIdx, 'es') : undefined}
+                      style={{
+                        textDecorationLine: isHighlighted ? 'underline' : 'none',
+                        textDecorationColor: theme.accent,
+                        textDecorationStyle: 'solid',
+                        color: isHighlighted ? theme.accent : theme.spanishText,
+                      }}
+                    >
+                      {word + ' '}
+                    </Text>
+                  );
+                })}
               </Text>
+
             </View>
           );
         })}
