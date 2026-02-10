@@ -987,30 +987,61 @@
       "id": "ch2-p14-s2",
       "german": ["und", "auf", "häuslichen", "Unterricht", "gedrungen."],
       "spanish": ["y", "lo", "había", "empujado", "a", "la", "enseñanza", "domiciliaria."],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 4], "es": [2, 3]},
+        {"de": 2, "es": [4, 5, 6, 7]},
+        {"de": 3, "es": [4, 5, 6, 7]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p15-s1",
       "german": ["Einzeln,", "ohne", "Kameradschaft", "war", "er", "aufgewachsen"],
       "spanish": ["Solo,", "sin", "camaradería,", "había", "crecido"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": [3, 4, 5], "es": [3, 4]}
+      ],
       "isParagraphStart": true
     },
     {
       "id": "ch2-p15-s2",
       "german": ["und", "hatte", "doch", "zeitig", "erkennen", "müssen,"],
       "spanish": ["y", "sin", "embargo", "había", "tenido", "que", "reconocer", "a", "tiempo"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 5], "es": [3, 4, 5]},
+        {"de": 2, "es": [1, 2]},
+        {"de": 3, "es": 8},
+        {"de": 4, "es": 6}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p15-s3",
       "german": ["daß", "er", "einem", "Geschlechte", "angehörte,"],
       "spanish": ["que", "pertenecía", "a", "una", "raza"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": [2, 3, 4], "es": [2, 3, 4]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p15-s4",
       "german": ["in", "dem", "nicht", "das", "Talent,"],
       "spanish": ["en", "la", "cual", "no", "el", "talento"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1], "es": [1, 2]},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 5}
+      ],
       "isParagraphStart": false
     },
     {
