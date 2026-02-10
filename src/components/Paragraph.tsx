@@ -267,7 +267,7 @@ export function Paragraph({
               </Text>
 
               {/* Texto español con palabras individuales tocables */}
-              <Text style={[styles.spanishSegmentText, baseTextStyle, { color: theme.spanishText, fontSize: fontSize * 0.80, textAlign: 'left', opacity: 0.7 }]} {...androidTextProps} selectable={!hasMapping}>
+              <Text style={[styles.spanishSegmentText, baseTextStyle, { color: theme.spanishText, fontSize: fontSize * 0.80, textAlign: 'left', opacity: 0.7, fontWeight: '300' }]} {...androidTextProps} selectable={!hasMapping}>
                 {segment.spanish.map((word, wordIdx) => {
                   const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'es');
                   const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'es');
@@ -682,7 +682,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   spanishSegmentText: {
-    fontStyle: 'italic',
     width: '100%',
     marginTop: -6,
   },
