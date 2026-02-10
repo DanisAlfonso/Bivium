@@ -7187,7 +7187,16 @@
         "una",
         "observación"
       ],
-      "isParagraphStart": true
+      "isParagraphStart": true,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 6}
+      ]
     },
     {
       "id": "ch2-p24-s2",
@@ -7202,7 +7211,12 @@
         "una",
         "experiencia"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 2], "es": 1},
+        {"de": 3, "es": 2}
+      ]
     },
     {
       "id": "ch2-p24-s3",
@@ -7230,7 +7244,17 @@
         "y",
         "fama"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2, 3, 4]},
+        {"de": 2, "es": 5},
+        {"de": 3, "es": 6},
+        {"de": 4, "es": [7, 8]},
+        {"de": 5, "es": 9},
+        {"de": 6, "es": 10},
+        {"de": 7, "es": 11}
+      ]
     },
     {
       "id": "ch2-p24-s4",
@@ -7248,7 +7272,14 @@
         "su",
         "obra"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4}
+      ]
     },
     {
       "id": "ch2-p24-s5",
@@ -7264,7 +7295,13 @@
         "maravilla",
         "entonces"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3}
+      ]
     },
     {
       "id": "ch2-p24-s6",
@@ -7283,7 +7320,13 @@
         "carácter",
         "moral"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 2], "es": 1},
+        {"de": 3, "es": 2},
+        {"de": [4, 5], "es": [3, 4]}
+      ]
     },
     {
       "id": "ch2-p24-s7",
@@ -7307,7 +7350,16 @@
         "peculiares",
         "era?"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 1},
+        {"de": 3, "es": [3, 4]},
+        {"de": 4, "es": 7},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 8}
+      ]
     },
     {
       "id": "ch2-p25-s1",
@@ -7336,7 +7388,16 @@
         "apariciones",
         "individuales"
       ],
-      "isParagraphStart": true
+      "isParagraphStart": true,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": [3, 4, 5], "es": [3, 4, 5, 6]},
+        {"de": 6, "es": 11},
+        {"de": 7, "es": 7},
+        {"de": 8, "es": [8, 9, 10]}
+      ]
     },
     {
       "id": "ch2-p25-s2",
@@ -7364,7 +7425,19 @@
         "analista",
         "había"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 9},
+        {"de": 5, "es": 4},
+        {"de": 6, "es": 5},
+        {"de": 7, "es": 6},
+        {"de": 8, "es": 7},
+        {"de": 9, "es": 8}
+      ]
     },
     {
       "id": "ch2-p25-s3",
@@ -7383,7 +7456,14 @@
         "la",
         "concepción"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": [3, 4]},
+        {"de": 4, "es": 5}
+      ]
     },
     {
       "id": "ch2-p25-s4",
@@ -7404,7 +7484,15 @@
         "juvenil«",
         "era"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 3},
+        {"de": 2, "es": 4},
+        {"de": 3, "es": 5},
+        {"de": 4, "es": 2},
+        {"de": 5, "es": 6}
+      ]
     },
     {
       "id": "ch2-p25-s5",
@@ -7428,7 +7516,16 @@
         "dientes",
         "y"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": [4, 5], "es": [5, 6]},
+        {"de": 6, "es": 4},
+        {"de": 7, "es": 7}
+      ]
     },
     {
       "id": "ch2-p25-s6",
@@ -7462,7 +7559,18 @@
         "el",
         "cuerpo«."
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 1},
+        {"de": 1, "es": [0, 2, 3]},
+        {"de": 2, "es": 4},
+        {"de": 3, "es": 10},
+        {"de": 4, "es": [5, 8]},
+        {"de": 5, "es": 6},
+        {"de": 6, "es": 7},
+        {"de": 7, "es": 9},
+        {"de": [8, 9, 10], "es": [11, 12, 13, 14]}
+      ]
     },
     {
       "id": "ch2-p25-s7",
@@ -7482,7 +7590,15 @@
         "y",
         "exacto"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4},
+        {"de": 5, "es": 5}
+      ]
     },
     {
       "id": "ch2-p25-s8",
@@ -7504,7 +7620,15 @@
         "sellado",
         "pasivo."
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": [0, 1, 2]},
+        {"de": 1, "es": 3},
+        {"de": 2, "es": 4},
+        {"de": 3, "es": 5},
+        {"de": 4, "es": 7},
+        {"de": 5, "es": 6}
+      ]
     },
     {
       "id": "ch2-p26-s1",
@@ -7529,7 +7653,14 @@
         "el",
         "dolor"
       ],
-      "isParagraphStart": true
+      "isParagraphStart": true,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": [2, 3], "es": [2, 3, 4]},
+        {"de": 4, "es": 5},
+        {"de": [5, 6, 7], "es": [6, 7, 8]}
+      ]
     },
     {
       "id": "ch2-p26-s2",
@@ -7547,7 +7678,14 @@
         "una",
         "tolerancia"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 1},
+        {"de": 1, "es": 0},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4}
+      ]
     },
     {
       "id": "ch2-p26-s3",
@@ -7564,7 +7702,13 @@
         "realización",
         "activa"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": [0, 1], "es": 0},
+        {"de": 2, "es": 1},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 2}
+      ]
     },
     {
       "id": "ch2-p26-s4",
@@ -7578,7 +7722,12 @@
         "triunfo",
         "positivo"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 1}
+      ]
     },
     {
       "id": "ch2-p26-s5",
@@ -7596,7 +7745,13 @@
         "Sebastián",
         "es"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": [2, 3, 4]},
+        {"de": 3, "es": 5}
+      ]
     },
     {
       "id": "ch2-p26-s6",
@@ -7622,7 +7777,17 @@
         "en",
         "general"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2]},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 5},
+        {"de": 5, "es": 6},
+        {"de": 6, "es": 7},
+        {"de": 7, "es": [8, 9]}
+      ]
     },
     {
       "id": "ch2-p26-s7",
@@ -7645,7 +7810,14 @@
         "en",
         "cuestión."
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": [0, 1], "es": [0, 1]},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": [4, 5, 6], "es": [5, 6]},
+        {"de": 7, "es": 4}
+      ]
     },
     {
       "id": "ch2-p27-s1",
@@ -7668,7 +7840,14 @@
         "mundo",
         "narrado"
       ],
-      "isParagraphStart": true
+      "isParagraphStart": true,
+      "mapping": [
+        {"de": 0, "es": [0, 1, 2]},
+        {"de": [1, 2, 3], "es": [3, 4, 5]},
+        {"de": 4, "es": 6},
+        {"de": 5, "es": 7},
+        {"de": 6, "es": 7}
+      ]
     },
     {
       "id": "ch2-p27-s2",
@@ -7686,7 +7865,13 @@
         "elegante",
         "autocontrol"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": [0, 1], "es": [0, 1]},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4}
+      ]
     },
     {
       "id": "ch2-p27-s3",
@@ -7710,7 +7895,16 @@
         "interna",
         "subcavidad"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": [2, 3], "es": [2, 3]},
+        {"de": 4, "es": 4},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 6},
+        {"de": 7, "es": 7}
+      ]
     },
     {
       "id": "ch2-p27-s4",
@@ -7724,7 +7918,12 @@
         "decadencia",
         "biológica"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 1}
+      ]
     },
     {
       "id": "ch2-p27-s5",
@@ -7744,7 +7943,13 @@
         "mundo",
         "esconde;"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 2], "es": [1, 2]},
+        {"de": [3, 4], "es": [3, 4]},
+        {"de": 5, "es": 5}
+      ]
     },
     {
       "id": "ch2-p27-s6",
@@ -7762,7 +7967,14 @@
         "sensualmente",
         "fealdad"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 2},
+        {"de": 4, "es": 4}
+      ]
     },
     {
       "id": "ch2-p27-s7",
@@ -7784,7 +7996,15 @@
         "a",
         "la"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 2], "es": 1},
+        {"de": 3, "es": 2},
+        {"de": 4, "es": 3},
+        {"de": 5, "es": 4},
+        {"de": 6, "es": [5, 6]}
+      ]
     },
     {
       "id": "ch2-p27-s8",
@@ -7799,7 +8019,12 @@
         "llama",
         "encender"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": [2, 3], "es": 2}
+      ]
     },
     {
       "id": "ch2-p27-s9",
@@ -7826,7 +8051,14 @@
         "la",
         "belleza;"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 8], "es": 1},
+        {"de": [2, 3], "es": [2, 3]},
+        {"de": [4, 5], "es": [4, 5, 6]},
+        {"de": [6, 7], "es": [7, 8, 9]}
+      ]
     },
     {
       "id": "ch2-p27-s10",
@@ -7840,7 +8072,12 @@
         "pálida",
         "impotencia"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2}
+      ]
     },
     {
       "id": "ch2-p27-s11",
@@ -7866,7 +8103,17 @@
         "la",
         "fuerza"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": [2, 5], "es": [2, 5]},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4},
+        {"de": 6, "es": 6},
+        {"de": 7, "es": 7},
+        {"de": 8, "es": 8}
+      ]
     },
     {
       "id": "ch2-p27-s12",
@@ -7885,7 +8132,14 @@
         "pueblo",
         "soberbio"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 3},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 5},
+        {"de": 4, "es": 4}
+      ]
     },
     {
       "id": "ch2-p27-s13",
@@ -7911,7 +8165,17 @@
         "pies",
         "arrojarse;"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": [0, 1]},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": [4, 5]},
+        {"de": 4, "es": 6},
+        {"de": 5, "es": 7},
+        {"de": 6, "es": 8},
+        {"de": 7, "es": 9}
+      ]
     },
     {
       "id": "ch2-p27-s14",
@@ -7941,7 +8205,19 @@
         "la",
         "forma;"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": [3, 4]},
+        {"de": 4, "es": 5},
+        {"de": 5, "es": 6},
+        {"de": 6, "es": 7},
+        {"de": 7, "es": 8},
+        {"de": 8, "es": 9},
+        {"de": 9, "es": [10, 11]}
+      ]
     },
     {
       "id": "ch2-p27-s15",
@@ -7957,7 +8233,13 @@
         "peligrosa",
         "vida"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3}
+      ]
     },
     {
       "id": "ch2-p27-s16",
@@ -7983,7 +8265,17 @@
         "nacido",
         "tramposo:"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 2], "es": [1, 2]},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 6},
+        {"de": 7, "es": 7},
+        {"de": 8, "es": 8}
+      ]
     },
     {
       "id": "ch2-p27-s17",
@@ -8011,7 +8303,14 @@
         "similar",
         "todavía"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": [0, 1], "es": [0, 1, 2]},
+        {"de": [2, 3], "es": [3, 4]},
+        {"de": 4, "es": 5},
+        {"de": 5, "es": 6},
+        {"de": [6, 7, 8], "es": [7, 8, 9, 10]}
+      ]
     },
     {
       "id": "ch2-p27-s18",
@@ -8027,7 +8326,13 @@
         "podía",
         "dudar"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 1},
+        {"de": 3, "es": 3}
+      ]
     },
     {
       "id": "ch2-p27-s19",
@@ -8048,7 +8353,14 @@
         "otro",
         "heroísmo"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 2], "es": [1, 3]},
+        {"de": [3, 4], "es": [2, 4]},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 6}
+      ]
     },
     {
       "id": "ch2-p27-s20",
@@ -8065,7 +8377,13 @@
         "la",
         "debilidad."
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": [3, 4]}
+      ]
     },
     {
       "id": "ch2-p28-s1",
@@ -8092,7 +8410,16 @@
         "que",
         "este?"
       ],
-      "isParagraphStart": true
+      "isParagraphStart": true,
+      "mapping": [
+        {"de": [0, 1], "es": [4, 5]},
+        {"de": 2, "es": 0},
+        {"de": 3, "es": [1, 2, 3]},
+        {"de": 4, "es": 6},
+        {"de": 5, "es": [7, 8]},
+        {"de": 6, "es": 9},
+        {"de": 7, "es": 10}
+      ]
     },
     {
       "id": "ch2-p29-s1",
@@ -8110,7 +8437,14 @@
         "el",
         "poeta"
       ],
-      "isParagraphStart": true
+      "isParagraphStart": true,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4}
+      ]
     },
     {
       "id": "ch2-p29-s2",
@@ -8135,7 +8469,16 @@
         "del",
         "agotamiento"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": [0, 1], "es": [0, 1, 2]},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 5},
+        {"de": 5, "es": 6},
+        {"de": 6, "es": 7},
+        {"de": 7, "es": 8}
+      ]
     },
     {
       "id": "ch2-p29-s3",
@@ -8162,7 +8505,13 @@
         "de",
         "pie"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": [0, 1], "es": [0, 1, 2]},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 4},
+        {"de": [4, 5, 6], "es": [5, 6, 7, 8, 9, 10, 11]}
+      ]
     },
     {
       "id": "ch2-p29-s4",
@@ -8181,7 +8530,13 @@
         "del",
         "rendimiento"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": [0, 1], "es": [0, 1, 2]},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 5}
+      ]
     },
     {
       "id": "ch2-p29-s5",
@@ -8205,7 +8560,17 @@
         "de",
         "medios"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 6},
+        {"de": 7, "es": 7}
+      ]
     },
     {
       "id": "ch2-p29-s6",
@@ -8225,7 +8590,14 @@
         "lista",
         "administración"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2, 3]},
+        {"de": 2, "es": 4},
+        {"de": 3, "es": 5},
+        {"de": 4, "es": 6}
+      ]
     },
     {
       "id": "ch2-p29-s7",
@@ -8254,7 +8626,17 @@
         "la",
         "grandeza."
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": [0, 8], "es": [0, 1]},
+        {"de": 1, "es": [2, 3]},
+        {"de": 2, "es": 5},
+        {"de": 3, "es": 6},
+        {"de": 4, "es": 7},
+        {"de": 5, "es": 8},
+        {"de": 6, "es": [9, 10]},
+        {"de": 7, "es": 11}
+      ]
     },
     {
       "id": "ch2-p30-s1",
@@ -8282,7 +8664,16 @@
         "la",
         "era."
       ],
-      "isParagraphStart": true
+      "isParagraphStart": true,
+      "mapping": [
+        {"de": [0, 1], "es": [0, 1, 2, 3]},
+        {"de": 2, "es": 4},
+        {"de": 3, "es": 5},
+        {"de": 4, "es": 6},
+        {"de": 5, "es": 7},
+        {"de": 6, "es": 8},
+        {"de": 7, "es": [9, 10]}
+      ]
     },
     {
       "id": "ch2-p30-s2",
@@ -8309,7 +8700,17 @@
         "su",
         "obra"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 2], "es": [1, 2]},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 3},
+        {"de": 5, "es": [5, 6]},
+        {"de": 6, "es": 7},
+        {"de": 7, "es": 8},
+        {"de": 8, "es": 9}
+      ]
     },
     {
       "id": "ch2-p30-s3",
@@ -8330,7 +8731,14 @@
         "cantados",
         "allí"
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": [0, 1, 2], "es": [0, 1, 2]},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 6}
+      ]
     },
     {
       "id": "ch2-p30-s4",
@@ -8351,7 +8759,13 @@
         "su",
         "nombre."
       ],
-      "isParagraphStart": false
+      "isParagraphStart": false,
+      "mapping": [
+        {"de": [0, 1, 2, 3], "es": [0, 1]},
+        {"de": [4, 5], "es": 2},
+        {"de": 6, "es": 3},
+        {"de": 7, "es": 4}
+      ]
     },
     {
       "id": "ch2-p31-s1",
