@@ -1048,30 +1048,75 @@
       "id": "ch2-p15-s5",
       "german": ["wohl", "aber", "die", "physische", "Basis", "eine", "Seltenheit", "war,"],
       "spanish": ["sino", "la", "base", "física", "era", "una", "rareza"],
+      "mapping": [
+        {"de": [0, 1], "es": 0},
+        {"de": 2, "es": 1},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 2},
+        {"de": [5, 6, 7], "es": [4, 5, 6]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p15-s6",
       "german": ["deren", "das", "Talent", "zu", "seiner", "Erfüllung", "bedarf,"],
       "spanish": ["de", "la", "cual", "el", "talento", "necesita", "para", "su", "cumplimiento"],
+      "mapping": [
+        {"de": 0, "es": [0, 1, 2]},
+        {"de": 1, "es": 3},
+        {"de": 2, "es": 4},
+        {"de": [3, 4, 5, 6], "es": [5, 6, 7, 8]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p15-s7",
       "german": ["–", "einem", "Geschlechte,", "das", "früh", "sein", "Bestes", "zu", "geben", "pflegt"],
       "spanish": ["–", "una", "raza", "que", "tiende", "a", "dar", "lo", "mejor", "de", "sí", "temprano"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 2], "es": [1, 2]},
+        {"de": 3, "es": 3},
+        {"de": [4, 9], "es": [4, 5, 11]},
+        {"de": 5, "es": 10},
+        {"de": 6, "es": [6, 7, 8, 9]},
+        {"de": 7, "es": [4, 5]},
+        {"de": 8, "es": 6}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p15-s8",
       "german": ["und", "in", "dem", "das", "Können", "es", "selten", "zu", "Jahren", "bringt."],
       "spanish": ["y", "en", "la", "cual", "el", "saber", "rara", "vez", "alcanza", "los", "años."],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": [1, 2], "es": [1, 2, 3]},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 5},
+        {"de": 5, "es": 8},
+        {"de": 6, "es": [6, 7]},
+        {"de": [7, 8, 9], "es": [8, 9, 10]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p16-s1",
       "german": ["Aber", "sein", "Lieblingswort", "war", "»Durchhalten«,", "–", "er", "sah", "in", "seinem", "Friedrich-Roman"],
       "spanish": ["Pero", "su", "palabra", "favorita", "era", "»Persistir«", "–", "él", "veía", "en", "su", "novela", "de", "Federico"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": [2, 3]},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 5},
+        {"de": 5, "es": 6},
+        {"de": 6, "es": 7},
+        {"de": 7, "es": 8},
+        {"de": 8, "es": 9},
+        {"de": 9, "es": 10},
+        {"de": 10, "es": [11, 12, 13]}
+      ],
       "isParagraphStart": true
     },
     {
