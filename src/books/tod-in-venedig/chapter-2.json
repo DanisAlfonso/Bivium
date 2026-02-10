@@ -1254,96 +1254,229 @@
       "id": "ch2-p18-s3",
       "german": ["so", "bedurfte", "er", "höchlich", "der", "Zucht,"],
       "spanish": ["entonces", "necesitaba", "grandemente", "de", "la", "disciplina"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 1},
+        {"de": 3, "es": 2},
+        {"de": 4, "es": [3, 4]},
+        {"de": 5, "es": 5}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p18-s4",
       "german": ["–", "und", "Zucht", "war", "ja", "zum", "Glücke", "sein", "eingeborenes", "Erbteil"],
       "spanish": ["–", "y", "disciplina", "era", "por", "fortuna", "su", "herencia", "innata"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": [4, 5, 6], "es": [4, 5]},
+        {"de": 7, "es": 6},
+        {"de": 8, "es": 8},
+        {"de": 9, "es": 7}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p18-s5",
       "german": ["von", "väterlicher", "Seite."],
       "spanish": ["de", "lado", "paterno."],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 1}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p19-s1",
       "german": ["Mit", "vierzig,", "mit", "fünfzig", "Jahren", "wie", "schon", "in", "einem", "Alter,"],
       "spanish": ["Con", "cuarenta,", "con", "cincuenta", "años", "como", "ya", "en", "una", "edad"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 6},
+        {"de": 7, "es": 7},
+        {"de": 8, "es": 8},
+        {"de": 9, "es": 9}
+      ],
       "isParagraphStart": true
     },
     {
       "id": "ch2-p19-s2",
       "german": ["wo", "andere", "verschwenden,", "schwärmen,", "die", "Ausführung", "großer", "Pläne", "getrost", "verschieben,"],
       "spanish": ["donde", "otros", "despilfarran,", "soñan,", "la", "ejecución", "de", "grandes", "planes", "confiadamente", "diferida"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 7},
+        {"de": 7, "es": 8},
+        {"de": 8, "es": 9},
+        {"de": 9, "es": 10}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p19-s3",
       "german": ["begann", "er", "seinen", "Tag", "beizeiten", "mit", "Stürzen", "kalten", "Wassers"],
       "spanish": ["comenzaba", "su", "día", "a", "tiempo", "con", "chasquidos", "de", "agua", "fría"],
+      "mapping": [
+        {"de": [0, 1], "es": 0},
+        {"de": 2, "es": 1},
+        {"de": 3, "es": 2},
+        {"de": 4, "es": [3, 4]},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 6},
+        {"de": [7, 8], "es": [7, 8, 9]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p19-s4",
       "german": ["über", "Brust", "und", "Rücken"],
       "spanish": ["sobre", "pecho", "y", "espalda"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p19-s5",
       "german": ["und", "brachte", "dann,", "ein", "Paar", "hoher", "Wachskerzen", "in", "silbernen", "Leuchtern"],
       "spanish": ["y", "luego", "traía,", "un", "par", "de", "altas", "velas", "de", "cera", "en", "candeleros", "de", "plata"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 1},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4},
+        {"de": [5, 6], "es": [5, 6, 7, 8, 9]},
+        {"de": 7, "es": 10},
+        {"de": 8, "es": [11, 12]},
+        {"de": 9, "es": 13}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p19-s6",
       "german": ["zu", "Häupten", "des", "Manuskripts,", "die", "Kräfte,"],
       "spanish": ["a", "la", "cabeza", "del", "manuscrito,", "las", "fuerzas"],
+      "mapping": [
+        {"de": [0, 1], "es": [0, 1, 2]},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 5},
+        {"de": 5, "es": 6}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p19-s7",
       "german": ["die", "er", "im", "Schlaf", "gesammelt,"],
       "spanish": ["que", "él", "había", "recogido", "en", "el", "sueño"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": [2, 3], "es": [4, 5, 6]},
+        {"de": 4, "es": [2, 3]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p19-s8",
       "german": ["in", "zwei", "oder", "drei", "inbrünstig", "gewissenhaften", "Morgenstunden", "der", "Kunst"],
       "spanish": ["en", "dos", "o", "tres", "mañanas", "devotamente", "escrupulosas", "del", "arte"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 5},
+        {"de": 5, "es": 6},
+        {"de": 6, "es": 4},
+        {"de": [7, 8], "es": [7, 8]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p19-s9",
       "german": ["zum", "Opfer", "dar."],
       "spanish": ["ofrecía", "en", "sacrificio."],
+      "mapping": [
+        {"de": [0, 1, 2], "es": [0, 1, 2]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p20-s1",
       "german": ["Es", "war", "verzeihlich,", "ja,", "es", "bedeutete", "recht", "eigentlich", "den", "Sieg"],
       "spanish": ["Era", "disculpable,", "sí,", "significaba", "propiamente", "la", "victoria"],
+      "mapping": [
+        {"de": [0, 1], "es": 0},
+        {"de": 2, "es": 1},
+        {"de": 3, "es": 2},
+        {"de": 4, "es": 3},
+        {"de": [5, 6, 7, 8], "es": [3, 4, 5]},
+        {"de": 9, "es": 6}
+      ],
       "isParagraphStart": true
     },
     {
       "id": "ch2-p20-s2",
       "german": ["seiner", "Moralität,", "wenn", "Unkundige", "die", "Maja-Welt"],
       "spanish": ["de", "su", "moralidad,", "si", "los", "ignorantes", "el", "mundo", "Maya"],
+      "mapping": [
+        {"de": [0, 1], "es": [0, 1, 2]},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": [4, 5]},
+        {"de": 4, "es": 6},
+        {"de": 5, "es": [7, 8]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p20-s3",
       "german": ["oder", "die", "epischen", "Massen,", "in", "denen", "sich", "Friedrichs", "Heldenleben", "entrollte,"],
       "spanish": ["o", "las", "masas", "épicas", "en", "las", "cuales", "se", "desplegaba", "la", "vida", "heroica", "de", "Federico"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 2},
+        {"de": [4, 5], "es": [4, 5, 6]},
+        {"de": 6, "es": 7},
+        {"de": [7, 8], "es": [11, 12, 13]},
+        {"de": 9, "es": [8, 9, 10]}
+      ],
       "isParagraphStart": false
     },
     {
       "id": "ch2-p20-s4",
       "german": ["für", "das", "Erzeugnis", "gedrungener", "Kraft", "und", "eines", "langen", "Atems", "hielten,"],
       "spanish": ["consideraban", "el", "producto", "de", "fuerza", "compacta", "y", "de", "un", "largo", "aliento"],
+      "mapping": [
+        {"de": [0, 9], "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 5},
+        {"de": 4, "es": 4},
+        {"de": 5, "es": 6},
+        {"de": [6, 7, 8], "es": [7, 8, 9, 10]}
+      ],
       "isParagraphStart": false
     },
     {
