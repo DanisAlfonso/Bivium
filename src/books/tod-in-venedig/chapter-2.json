@@ -15983,6 +15983,40 @@
         "juvenil",
         "edad"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": 4,
+          "es": 4
+        },
+        {
+          "de": 5,
+          "es": 5
+        },
+        {
+          "de": 6,
+          "es": 6
+        },
+        {
+          "de": 7,
+          "es": 7
+        }
+      ],
       "isParagraphStart": true
     },
     {
@@ -16006,6 +16040,36 @@
         "erudita",
         "había",
         "contraído"
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": 4,
+          "es": [5, 6]
+        },
+        {
+          "de": 5,
+          "es": 6
+        },
+        {
+          "de": 6,
+          "es": [7, 8]
+        }
       ],
       "isParagraphStart": false
     },
@@ -16035,6 +16099,40 @@
         "la",
         "muerte."
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 7,
+          "es": 1
+        },
+        {
+          "de": 1,
+          "es": [2, 3]
+        },
+        {
+          "de": 2,
+          "es": [4, 5]
+        },
+        {
+          "de": 3,
+          "es": [6, 7, 8]
+        },
+        {
+          "de": 4,
+          "es": 9
+        },
+        {
+          "de": 5,
+          "es": 10
+        },
+        {
+          "de": 6,
+          "es": 11
+        }
+      ],
       "isParagraphStart": false
     },
     {
@@ -16057,6 +16155,32 @@
         "había",
         "quedado."
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": [4, 6],
+          "es": [5, 6]
+        },
+        {
+          "de": 5,
+          "es": 4
+        }
+      ],
       "isParagraphStart": true
     },
     {
@@ -16075,6 +16199,24 @@
         "nunca",
         "había",
         "tenido."
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": [2, 5],
+          "es": [3, 4]
+        },
+        {
+          "de": 4,
+          "es": 2
+        }
       ],
       "isParagraphStart": true
     },
@@ -16106,6 +16248,40 @@
         "moreno,",
         "afeitado."
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": 4,
+          "es": 4
+        },
+        {
+          "de": [5, 6],
+          "es": [5, 6, 7, 8, 9, 10]
+        },
+        {
+          "de": 7,
+          "es": 11
+        },
+        {
+          "de": 8,
+          "es": 12
+        }
+      ],
       "isParagraphStart": true
     },
     {
@@ -16134,6 +16310,36 @@
         "relación",
         "con"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": 4,
+          "es": 4
+        },
+        {
+          "de": [5, 6],
+          "es": [5, 6]
+        },
+        {
+          "de": [7, 8, 9],
+          "es": [7, 8, 9]
+        }
+      ],
       "isParagraphStart": true
     },
     {
@@ -16149,6 +16355,24 @@
         "casi",
         "elegante",
         "figura."
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        }
       ],
       "isParagraphStart": false
     },
@@ -16174,6 +16398,24 @@
         "la",
         "coronilla"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": [1, 2],
+          "es": [2, 3, 4]
+        },
+        {
+          "de": 3,
+          "es": 1
+        },
+        {
+          "de": [4, 5, 6],
+          "es": [5, 6, 7, 8]
+        }
+      ],
       "isParagraphStart": true
     },
     {
@@ -16197,6 +16439,36 @@
         "y",
         "fuertemene",
         "canoso"
+      ],
+      "mapping": [
+        {
+          "de": [0, 1],
+          "es": [0, 1]
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": 4,
+          "es": 4
+        },
+        {
+          "de": 5,
+          "es": 5
+        },
+        {
+          "de": 6,
+          "es": 6
+        },
+        {
+          "de": 7,
+          "es": 7
+        }
       ],
       "isParagraphStart": false
     },
@@ -16224,6 +16496,40 @@
         "cicatrizada",
         "frente."
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": 4,
+          "es": 4
+        },
+        {
+          "de": 5,
+          "es": [5, 6, 7]
+        },
+        {
+          "de": 6,
+          "es": 8
+        },
+        {
+          "de": 7,
+          "es": 9
+        }
+      ],
       "isParagraphStart": false
     },
     {
@@ -16249,6 +16555,24 @@
         "lentes",
         "sin",
         "montura"
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": [2, 3],
+          "es": [2, 3, 4, 5, 6]
+        },
+        {
+          "de": [4, 5, 6],
+          "es": [7, 8, 9, 10]
+        }
       ],
       "isParagraphStart": true
     },
@@ -16277,6 +16601,36 @@
         "noblemente",
         "curvada",
         "nariz."
+      ],
+      "mapping": [
+        {
+          "de": [0, 9],
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": [4, 5],
+          "es": [4, 5, 6]
+        },
+        {
+          "de": [6, 7],
+          "es": [7, 8]
+        },
+        {
+          "de": 8,
+          "es": 9
+        }
       ],
       "isParagraphStart": false
     },
@@ -16311,6 +16665,52 @@
         "y",
         "tensa;"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": 4,
+          "es": [4, 5]
+        },
+        {
+          "de": 5,
+          "es": 6
+        },
+        {
+          "de": 6,
+          "es": [7, 8]
+        },
+        {
+          "de": 7,
+          "es": [9, 10]
+        },
+        {
+          "de": 8,
+          "es": 11
+        },
+        {
+          "de": 9,
+          "es": 12
+        },
+        {
+          "de": 10,
+          "es": 13
+        }
+      ],
       "isParagraphStart": true
     },
     {
@@ -16332,6 +16732,28 @@
         "y",
         "arrugada"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": [1, 2, 3, 4]
+        },
+        {
+          "de": 2,
+          "es": 5
+        },
+        {
+          "de": 3,
+          "es": 6
+        },
+        {
+          "de": 4,
+          "es": 7
+        }
+      ],
       "isParagraphStart": false
     },
     {
@@ -16350,6 +16772,28 @@
         "barbilla",
         "suavemente",
         "dividida."
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": [1, 2]
+        },
+        {
+          "de": 2,
+          "es": 3
+        },
+        {
+          "de": 3,
+          "es": 4
+        },
+        {
+          "de": 4,
+          "es": 5
+        }
       ],
       "isParagraphStart": false
     },
@@ -16381,6 +16825,48 @@
         "lateralmente",
         "cabeza"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": [2, 3, 4]
+        },
+        {
+          "de": 3,
+          "es": 5
+        },
+        {
+          "de": 4,
+          "es": 6
+        },
+        {
+          "de": 5,
+          "es": 7
+        },
+        {
+          "de": 6,
+          "es": 8
+        },
+        {
+          "de": 7,
+          "es": 10
+        },
+        {
+          "de": 8,
+          "es": 9
+        },
+        {
+          "de": 9,
+          "es": 11
+        }
+      ],
       "isParagraphStart": true
     },
     {
@@ -16393,6 +16879,12 @@
       "spanish": [
         "haber",
         "pasado"
+      ],
+      "mapping": [
+        {
+          "de": [0, 1, 2],
+          "es": [0, 1]
+        }
       ],
       "isParagraphStart": false
     },
@@ -16415,6 +16907,28 @@
         "había",
         "sido"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": [1, 2]
+        },
+        {
+          "de": [2, 6],
+          "es": [4, 5]
+        },
+        {
+          "de": 3,
+          "es": 2
+        },
+        {
+          "de": 4,
+          "es": 3
+        }
+      ],
       "isParagraphStart": false
     },
     {
@@ -16436,6 +16950,36 @@
         "fisonómica",
         "había",
         "asumido"
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 4
+        },
+        {
+          "de": 4,
+          "es": 3
+        },
+        {
+          "de": 5,
+          "es": 6
+        },
+        {
+          "de": 6,
+          "es": 5
+        }
       ],
       "isParagraphStart": false
     },
@@ -16466,6 +17010,36 @@
         "movida",
         "vida."
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": [1, 2, 3]
+        },
+        {
+          "de": [2, 8],
+          "es": [4, 5]
+        },
+        {
+          "de": 3,
+          "es": 6
+        },
+        {
+          "de": [4, 7],
+          "es": [7, 8, 11]
+        },
+        {
+          "de": 5,
+          "es": 9
+        },
+        {
+          "de": 6,
+          "es": 10
+        }
+      ],
       "isParagraphStart": false
     },
     {
@@ -16494,6 +17068,40 @@
         "la",
         "conversación"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": [0, 1]
+        },
+        {
+          "de": 1,
+          "es": 2
+        },
+        {
+          "de": 2,
+          "es": 3
+        },
+        {
+          "de": 3,
+          "es": 4
+        },
+        {
+          "de": 4,
+          "es": 5
+        },
+        {
+          "de": 5,
+          "es": 6
+        },
+        {
+          "de": 6,
+          "es": 7
+        },
+        {
+          "de": [7, 8],
+          "es": [8, 9, 10]
+        }
+      ],
       "isParagraphStart": true
     },
     {
@@ -16519,6 +17127,44 @@
         "la",
         "guerra",
         "nacidos;"
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": 4,
+          "es": 4
+        },
+        {
+          "de": 5,
+          "es": 5
+        },
+        {
+          "de": 6,
+          "es": 6
+        },
+        {
+          "de": 7,
+          "es": 7
+        },
+        {
+          "de": 8,
+          "es": 8
+        }
       ],
       "isParagraphStart": false
     },
@@ -16547,6 +17193,32 @@
         "de",
         "los",
         "lentes"
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": [4, 8],
+          "es": [4, 5, 6, 7, 8, 9, 10]
+        },
+        {
+          "de": [5, 6, 7],
+          "es": [6, 7, 8, 9, 10]
+        }
       ],
       "isParagraphStart": false
     },
@@ -16581,6 +17253,28 @@
         "Siete",
         "Años."
       ],
+      "mapping": [
+        {
+          "de": [0, 9],
+          "es": [0, 1]
+        },
+        {
+          "de": 1,
+          "es": 2
+        },
+        {
+          "de": [2, 3],
+          "es": [3, 4]
+        },
+        {
+          "de": [4, 5],
+          "es": [5, 6, 7]
+        },
+        {
+          "de": [6, 7, 8],
+          "es": [8, 9, 10, 11, 12, 13, 14]
+        }
+      ],
       "isParagraphStart": false
     },
     {
@@ -16609,6 +17303,40 @@
         "vida",
         "elevada."
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": [3, 4],
+          "es": [5, 6]
+        },
+        {
+          "de": 5,
+          "es": 3
+        },
+        {
+          "de": 6,
+          "es": 4
+        },
+        {
+          "de": 7,
+          "es": 7
+        },
+        {
+          "de": [8, 9],
+          "es": [8, 9]
+        }
+      ],
       "isParagraphStart": true
     },
     {
@@ -16630,6 +17358,24 @@
         "consume",
         "más",
         "rápido."
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": [1, 2],
+          "es": [1, 2, 3]
+        },
+        {
+          "de": 3,
+          "es": 4
+        },
+        {
+          "de": [4, 5],
+          "es": [5, 6, 7]
+        }
       ],
       "isParagraphStart": true
     },
@@ -16661,6 +17407,40 @@
         "de",
         "imaginarios"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": [3, 4],
+          "es": [3, 4]
+        },
+        {
+          "de": [5, 6],
+          "es": [5, 6, 7]
+        },
+        {
+          "de": 7,
+          "es": 8
+        },
+        {
+          "de": 8,
+          "es": 9
+        },
+        {
+          "de": 9,
+          "es": [10, 11]
+        }
+      ],
       "isParagraphStart": true
     },
     {
@@ -16675,6 +17455,16 @@
         "espirituales",
         "aventuras"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": [1, 2],
+          "es": [1, 2]
+        }
+      ],
       "isParagraphStart": false
     },
     {
@@ -16688,6 +17478,20 @@
         "y",
         "ella",
         "produce"
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        }
       ],
       "isParagraphStart": false
     },
@@ -16713,6 +17517,24 @@
         "existencia",
         "externa"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": [2, 3],
+          "es": [2, 3, 4]
+        },
+        {
+          "de": [4, 5, 6],
+          "es": [5, 6, 7, 8]
+        }
+      ],
       "isParagraphStart": false
     },
     {
@@ -16733,6 +17555,24 @@
         "mimo,",
         "sobreexigencia"
       ],
+      "mapping": [
+        {
+          "de": [0, 1, 2],
+          "es": [0, 1, 2]
+        },
+        {
+          "de": 3,
+          "es": 3
+        },
+        {
+          "de": 4,
+          "es": 4
+        },
+        {
+          "de": 5,
+          "es": 5
+        }
+      ],
       "isParagraphStart": false
     },
     {
@@ -16751,6 +17591,24 @@
         "de",
         "los",
         "nervios"
+      ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": [3, 4],
+          "es": [3, 4, 5]
+        }
       ],
       "isParagraphStart": false
     },
@@ -16780,6 +17638,40 @@
         "placeres",
         "apenas"
       ],
+      "mapping": [
+        {
+          "de": 0,
+          "es": 0
+        },
+        {
+          "de": 1,
+          "es": 1
+        },
+        {
+          "de": 2,
+          "es": 2
+        },
+        {
+          "de": [3, 4],
+          "es": [3, 4, 5]
+        },
+        {
+          "de": 5,
+          "es": 6
+        },
+        {
+          "de": 6,
+          "es": 7
+        },
+        {
+          "de": 7,
+          "es": 8
+        },
+        {
+          "de": 9,
+          "es": 9
+        }
+      ],
       "isParagraphStart": false
     },
     {
@@ -16791,6 +17683,12 @@
       "spanish": [
         "puede",
         "lograr."
+      ],
+      "mapping": [
+        {
+          "de": [0, 1],
+          "es": [0, 1]
+        }
       ],
       "isParagraphStart": false
     }
