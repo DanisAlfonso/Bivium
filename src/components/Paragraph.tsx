@@ -222,50 +222,28 @@ export function Paragraph({
       );
     }
 
-    // Componente para renderizar palabras con resaltado de búsqueda
-    const HighlightedWords = ({ words, lang }: { words: string[]; lang: 'de' | 'es' }) => {
-      if (!searchQuery || searchQuery.trim().length === 0) {
-        return <>{words.map((w, i) => <React.Fragment key={i}>{w} </React.Fragment>)}</>;
-      }
+    // Verifica si una posición dentro del texto completo está dentro de una coincidencia de búsqueda
+    const getSearchHighlightStyle = (fullText: string, charIndex: number, wordLength: number) => {
+      if (!searchQuery || searchQuery.trim().length === 0) return null;
       
-      const fullText = words.join(' ');
       const lowerText = fullText.toLowerCase();
       const lowerQuery = searchQuery.toLowerCase().trim();
-      const result: React.ReactNode[] = [];
-      let lastIndex = 0;
       let matchIndex = lowerText.indexOf(lowerQuery);
       
       while (matchIndex !== -1) {
-        // Texto antes del match
-        if (matchIndex > lastIndex) {
-          result.push(fullText.slice(lastIndex, matchIndex));
+        const matchEnd = matchIndex + searchQuery.length;
+        // Si la palabra (o parte de ella) está dentro del match
+        if (charIndex < matchEnd && charIndex + wordLength > matchIndex) {
+          return {
+            backgroundColor: theme.accent + '40',
+            color: theme.accent,
+            fontWeight: '700' as const,
+            borderRadius: 2,
+          };
         }
-        
-        // El match resaltado
-        const matchText = fullText.slice(matchIndex, matchIndex + searchQuery.length);
-        result.push(
-          <Text 
-            key={`match-${matchIndex}`}
-            style={{ 
-              backgroundColor: theme.accent + '40', 
-              color: theme.accent,
-              fontWeight: '700',
-            }}
-          >
-            {matchText}
-          </Text>
-        );
-        
-        lastIndex = matchIndex + searchQuery.length;
-        matchIndex = lowerText.indexOf(lowerQuery, lastIndex);
+        matchIndex = lowerText.indexOf(lowerQuery, matchIndex + 1);
       }
-      
-      // Texto restante
-      if (lastIndex < fullText.length) {
-        result.push(fullText.slice(lastIndex));
-      }
-      
-      return <>{result.length > 0 ? result : fullText}</>;
+      return null;
     };
 
     // Modo Paralelo: mostrar segmento por segmento (alemán + español)
@@ -326,60 +304,62 @@ export function Paragraph({
             >
               {/* Texto alemán con palabras individuales tocables */}
               <Text style={[styles.germanSegmentText, baseTextStyle, { color: theme.germanText, textAlign: 'left' }]} {...androidTextProps} selectable={!hasMapping}>
-                {!searchQuery ? (
-                  // Modo normal con palabras clickeables
-                  segment.german.map((word, wordIdx) => {
-                    const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'de');
-                    const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'de');
+                {segment.german.map((word, wordIdx) => {
+                  const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'de');
+                  const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'de');
+                  
+                  // Calcular posición en el texto completo para resaltado de búsqueda
+                  const charIndex = segment.german.slice(0, wordIdx).join(' ').length + (wordIdx > 0 ? 1 : 0);
+                  const searchStyle = searchQuery ? getSearchHighlightStyle(segment.german.join(' '), charIndex, word.length) : null;
 
-                    return (
-                      <Text
-                        key={`de-${wordIdx}`}
-                        onPress={hasWordMapping ? () => handleWordTouch(segment, wordIdx, 'de') : undefined}
-                        style={{
-                          textDecorationLine: isHighlighted ? 'underline' : 'none',
-                          textDecorationColor: theme.accent,
-                          textDecorationStyle: 'solid',
-                          color: isHighlighted ? theme.accent : theme.germanText,
-                        }}
-                      >
-                        {word + ' '}
-                      </Text>
-                    );
-                  })
-                ) : (
-                  // Modo búsqueda con resaltado
-                  <HighlightedWords words={segment.german} lang="de" />
-                )}
+                  return (
+                    <Text
+                      key={`de-${wordIdx}`}
+                      onPress={hasWordMapping ? () => handleWordTouch(segment, wordIdx, 'de') : undefined}
+                      style={{
+                        textDecorationLine: isHighlighted ? 'underline' : 'none',
+                        textDecorationColor: theme.accent,
+                        textDecorationStyle: 'solid',
+                        color: isHighlighted ? theme.accent : (searchStyle ? searchStyle.color : theme.germanText),
+                        backgroundColor: searchStyle ? searchStyle.backgroundColor : undefined,
+                        fontWeight: searchStyle ? searchStyle.fontWeight : undefined,
+                        borderRadius: searchStyle ? searchStyle.borderRadius : undefined,
+                      }}
+                    >
+                      {word + ' '}
+                    </Text>
+                  );
+                })}
               </Text>
 
               {/* Texto español con palabras individuales tocables */}
               <Text style={[styles.spanishSegmentText, baseTextStyle, { color: theme.spanishText, fontSize: fontSize * 0.80, textAlign: 'left', opacity: 0.7, fontWeight: '300' }]} {...androidTextProps} selectable={!hasMapping}>
-                {!searchQuery ? (
-                  // Modo normal con palabras clickeables
-                  segment.spanish.map((word, wordIdx) => {
-                    const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'es');
-                    const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'es');
+                {segment.spanish.map((word, wordIdx) => {
+                  const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'es');
+                  const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'es');
+                  
+                  // Calcular posición en el texto completo para resaltado de búsqueda
+                  const charIndex = segment.spanish.slice(0, wordIdx).join(' ').length + (wordIdx > 0 ? 1 : 0);
+                  const searchStyle = searchQuery ? getSearchHighlightStyle(segment.spanish.join(' '), charIndex, word.length) : null;
 
-                    return (
-                      <Text
-                        key={`es-${wordIdx}`}
-                        onPress={hasWordMapping ? () => handleWordTouch(segment, wordIdx, 'es') : undefined}
-                        style={{
-                          textDecorationLine: isHighlighted ? 'underline' : 'none',
-                          textDecorationColor: theme.accent,
-                          textDecorationStyle: 'solid',
-                          color: isHighlighted ? theme.accent : theme.spanishText,
-                        }}
-                      >
-                        {word + ' '}
-                      </Text>
-                    );
-                  })
-                ) : (
-                  // Modo búsqueda con resaltado
-                  <HighlightedWords words={segment.spanish} lang="es" />
-                )}
+                  return (
+                    <Text
+                      key={`es-${wordIdx}`}
+                      onPress={hasWordMapping ? () => handleWordTouch(segment, wordIdx, 'es') : undefined}
+                      style={{
+                        textDecorationLine: isHighlighted ? 'underline' : 'none',
+                        textDecorationColor: theme.accent,
+                        textDecorationStyle: 'solid',
+                        color: isHighlighted ? theme.accent : (searchStyle ? searchStyle.color : theme.spanishText),
+                        backgroundColor: searchStyle ? searchStyle.backgroundColor : undefined,
+                        fontWeight: searchStyle ? searchStyle.fontWeight : undefined,
+                        borderRadius: searchStyle ? searchStyle.borderRadius : undefined,
+                      }}
+                    >
+                      {word + ' '}
+                    </Text>
+                  );
+                })}
               </Text>
 
             </View>
