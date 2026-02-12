@@ -49,19 +49,19 @@ export function Paragraph({
   const lastTapRef = useRef<number>(0);
   const getTextAlign = () => textAlignment === 'justify' ? 'justify' : 'left';
 
-  // Efecto de flash para el segmento buscado
+  // Efecto de flash permanente para el segmento buscado
+  // (Se mantiene visible permanentemente para no perder la referencia)
   useEffect(() => {
     if (searchQuery && revealedSegmentId) {
       // Verificar si este párrafo contiene el segmento buscado
       const hasSegment = segments.some(s => s.id === revealedSegmentId);
       if (hasSegment) {
         setFlashSegmentId(revealedSegmentId);
-        // Quitar el flash después de 3 segundos
-        const timer = setTimeout(() => {
-          setFlashSegmentId(null);
-        }, 3000);
-        return () => clearTimeout(timer);
+      } else {
+        setFlashSegmentId(null);
       }
+    } else {
+      setFlashSegmentId(null);
     }
   }, [searchQuery, revealedSegmentId, segments]);
 
