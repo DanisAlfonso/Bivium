@@ -21,6 +21,8 @@ import { Paragraph } from './Paragraph';
 interface BilingualReaderProps {
   chapter: Chapter;
   onBack: () => void;
+  initialSegmentId?: string;
+  searchQuery?: string;
 }
 
 const { height: SCREEN_HEIGHT } = Dimensions.get('window');
@@ -45,7 +47,7 @@ function groupSegmentsIntoParagraphs(segments: TextSegment[]): TextSegment[][] {
   return paragraphs;
 }
 
-export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
+export function BilingualReader({ chapter, onBack, initialSegmentId, searchQuery }: BilingualReaderProps) {
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
   const insets = useSafeAreaInsets();
@@ -62,7 +64,12 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
   const hintTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   // Solo UN segmento revelado a la vez (modo single simplificado)
-  const [revealedSegmentId, setRevealedSegmentId] = useState<string | null>(null);
+  // Si viene de búsqueda, usar el initialSegmentId como revelado inicialmente
+  const [revealedSegmentId, setRevealedSegmentId] = useState<string | null>(initialSegmentId || null);
+  
+  // Mapa para guardar las posiciones Y de cada párrafo (por índice)
+  const paragraphPositionsRef = useRef<Map<number, number>>(new Map());
+  const [paragraphLayoutsReady, setParagraphLayoutsReady] = useState(false);
   
   const {
     settings,
@@ -82,6 +89,16 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
   const paragraphs = useMemo(() => {
     return groupSegmentsIntoParagraphs(chapter.segments);
   }, [chapter.segments]);
+
+  // Función para recibir la posición Y de cada párrafo
+  const handleParagraphLayout = useCallback((paragraphIndex: number, y: number) => {
+    paragraphPositionsRef.current.set(paragraphIndex, y);
+    // Si tenemos suficientes párrafos medidos o pasó tiempo, marcamos como listo
+    if (paragraphPositionsRef.current.size >= paragraphs.length || 
+        paragraphPositionsRef.current.size > 10) {
+      setParagraphLayoutsReady(true);
+    }
+  }, [paragraphs.length]);
 
   const animateHeader = useCallback((show: boolean) => {
     setHeaderVisible(show);
@@ -146,20 +163,85 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
     setHasRestoredProgress(false);
   }, []);
 
-  // Restore progress cuando esté disponible
+  // Restore progress o navegar a segmento inicial
   useEffect(() => {
     if (hasRestoredProgress || settingsLoading) return;
     
+    // Si hay un segmentId inicial (desde búsqueda), navegar ahí
+    if (initialSegmentId) {
+      const segmentIndex = chapter.segments.findIndex(s => s.id === initialSegmentId);
+      if (segmentIndex >= 0) {
+        // Encontrar qué párrafo contiene este segmento
+        let currentSegmentIdx = 0;
+        let targetParagraphIdx = -1;
+        for (let i = 0; i < paragraphs.length; i++) {
+          const paraSegments = paragraphs[i];
+          if (currentSegmentIdx <= segmentIndex && 
+              currentSegmentIdx + paraSegments.length > segmentIndex) {
+            targetParagraphIdx = i;
+            break;
+          }
+          currentSegmentIdx += paraSegments.length;
+        }
+        
+        // Función para hacer scroll al objetivo
+        const doScroll = () => {
+          let targetY = 0;
+          
+          // Si tenemos la posición exacta del párrafo, usarla
+          if (targetParagraphIdx >= 0 && paragraphPositionsRef.current.has(targetParagraphIdx)) {
+            targetY = paragraphPositionsRef.current.get(targetParagraphIdx)!;
+          } else {
+            // Fallback: estimación basada en el modo de vista
+            const estimatedSegmentHeight = isImmersiveMode ? 45 : 75;
+            targetY = segmentIndex * estimatedSegmentHeight;
+          }
+          
+          // Dejar margen arriba para que el segmento sea visible (justo debajo del header)
+          const marginTop = isImmersiveMode ? 80 : HEADER_HEIGHT + 20;
+          const scrollToY = Math.max(0, targetY - marginTop);
+          
+          scrollViewRef.current?.scrollTo({ y: scrollToY, animated: false });
+        };
+        
+        // Esperar a que los layouts estén listos, o timeout
+        const checkAndScroll = () => {
+          if (paragraphLayoutsReady || paragraphPositionsRef.current.size > targetParagraphIdx) {
+            doScroll();
+            setHasRestoredProgress(true);
+          } else {
+            // Intentar de nuevo en 100ms
+            setTimeout(checkAndScroll, 100);
+          }
+        };
+        
+        // Iniciar después de que el render inicial esté completo
+        setTimeout(checkAndScroll, 200);
+        
+        // Timeout de seguridad: si después de 2 segundos no se ha posicionado, forzar
+        setTimeout(() => {
+          if (!hasRestoredProgress) {
+            doScroll();
+            setHasRestoredProgress(true);
+          }
+        }, 2000);
+        
+        return;
+      }
+    }
+    
+    // Si no, restaurar progreso guardado
     if (progress && progress.segmentIndex > 0) {
-      const estimatedY = progress.segmentIndex * 60;
+      const estimatedSegmentHeight = isImmersiveMode ? 45 : 75;
+      const estimatedY = progress.segmentIndex * estimatedSegmentHeight;
       setTimeout(() => {
         scrollViewRef.current?.scrollTo({ y: estimatedY, animated: false });
         setHasRestoredProgress(true);
-      }, 300);
+      }, 400);
     } else {
       setHasRestoredProgress(true);
     }
-  }, [progress, settingsLoading]);
+  }, [progress, settingsLoading, initialSegmentId, chapter.segments, isImmersiveMode, paragraphs, paragraphLayoutsReady, hasRestoredProgress]);
 
   // Guardar progreso periódicamente cada 3 segundos
   useEffect(() => {
@@ -265,6 +347,7 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
         {paragraphs.map((paragraphSegments, index) => (
           <Paragraph
             key={`para-${index}`}
+            paragraphIndex={index}
             segments={paragraphSegments}
             viewMode={settings.viewMode}
             textAlignment={settings.textAlignment}
@@ -272,11 +355,13 @@ export function BilingualReader({ chapter, onBack }: BilingualReaderProps) {
             revealedSegmentId={revealedSegmentId}
             onToggleReveal={toggleSegmentReveal}
             onDoubleTap={toggleHeader}
+            onLayout={handleParagraphLayout}
             theme={theme}
             fontFamily={fontFamilyId}
             fontSize={settings.fontSize}
             lineHeight={settings.lineHeight}
             isFirst={index === 0}
+            searchQuery={searchQuery}
           />
         ))}
       </ScrollView>

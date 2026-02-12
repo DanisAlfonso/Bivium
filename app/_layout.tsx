@@ -93,7 +93,9 @@ export default function RootLayout() {
     <SafeAreaProvider>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
+        <Stack.Screen name="chapters" />
         <Stack.Screen name="reader" />
+        <Stack.Screen name="search" />
       </Stack>
       <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
     </SafeAreaProvider>

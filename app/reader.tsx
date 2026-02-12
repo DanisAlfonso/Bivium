@@ -7,7 +7,12 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useTheme } from '../src/hooks/useTheme';
 
 export default function ReaderScreen() {
-  const { bookId, chapterId } = useLocalSearchParams<{ bookId: string; chapterId: string }>();
+  const { bookId, chapterId, segmentId, searchQuery } = useLocalSearchParams<{ 
+    bookId: string; 
+    chapterId: string; 
+    segmentId?: string;
+    searchQuery?: string;
+  }>();
   const [chapter, setChapter] = useState<Chapter | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -52,6 +57,8 @@ export default function ReaderScreen() {
     <BilingualReader
       chapter={chapter}
       onBack={() => router.back()}
+      initialSegmentId={segmentId}
+      searchQuery={searchQuery}
     />
   );
 }

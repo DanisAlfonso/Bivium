@@ -62,6 +62,13 @@ export default function ChaptersScreen() {
     router.back();
   };
 
+  const handleSearch = () => {
+    router.push({
+      pathname: '/search',
+      params: { bookId }
+    });
+  };
+
   const getChapterProgress = (chapterId: string) => {
     const progress = progressMap[chapterId];
     return progress || null;
@@ -126,7 +133,9 @@ export default function ChaptersScreen() {
           </Text>
           <Text style={[styles.title, { color: theme.text }]}>Kapitel</Text>
         </View>
-        <View style={styles.placeholder} />
+        <TouchableOpacity onPress={handleSearch} style={styles.searchButton}>
+          <Ionicons name="search" size={22} color={theme.text} />
+        </TouchableOpacity>
       </View>
 
       <ScrollView
@@ -206,6 +215,10 @@ const styles = StyleSheet.create({
   backButton: {
     padding: 8,
     marginLeft: -8,
+  },
+  searchButton: {
+    padding: 8,
+    marginRight: -8,
   },
   headerText: {
     flex: 1,

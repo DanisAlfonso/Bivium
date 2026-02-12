@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Platform, Pressable, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Platform, Pressable, LayoutChangeEvent } from 'react-native';
 import { WebView, WebViewMessageEvent } from 'react-native-webview';
 import { TextSegment, ViewMode, TextAlignment, TranslationStyle, WordMapping } from '../types';
 import { Theme } from '../constants/theme';
@@ -8,39 +8,62 @@ import { fontOptions } from '../constants/fonts';
 
 interface ParagraphProps {
   segments: TextSegment[];
+  paragraphIndex: number;
   viewMode: ViewMode;
   textAlignment: TextAlignment;
   translationStyle: TranslationStyle;
   revealedSegmentId: string | null;
   onToggleReveal: (segmentId: string) => void;
   onDoubleTap?: () => void;
+  onLayout?: (index: number, y: number) => void;
   theme: Theme;
   fontFamily: string;
   fontSize: number;
   lineHeight: number;
   isFirst: boolean;
+  searchQuery?: string;
 }
 
 export function Paragraph({
   segments,
+  paragraphIndex,
   viewMode,
   textAlignment,
   translationStyle,
   revealedSegmentId,
   onToggleReveal,
   onDoubleTap,
+  onLayout,
   theme,
   fontFamily,
   fontSize,
   lineHeight,
   isFirst,
+  searchQuery,
 }: ParagraphProps) {
   const [webViewHeight, setWebViewHeight] = useState(100);
   const [highlightedWord, setHighlightedWord] = useState<{segmentId: string, wordIndex: number, lang: 'de' | 'es'} | null>(null);
+  const [flashSegmentId, setFlashSegmentId] = useState<string | null>(null);
   const webViewRef = useRef<WebView>(null);
   const previousRevealedId = useRef<string | null>(null);
   const lastTapRef = useRef<number>(0);
   const getTextAlign = () => textAlignment === 'justify' ? 'justify' : 'left';
+
+  // Efecto de flash para el segmento buscado
+  useEffect(() => {
+    if (searchQuery && revealedSegmentId) {
+      // Verificar si este párrafo contiene el segmento buscado
+      const hasSegment = segments.some(s => s.id === revealedSegmentId);
+      if (hasSegment) {
+        setFlashSegmentId(revealedSegmentId);
+        // Quitar el flash después de 3 segundos
+        const timer = setTimeout(() => {
+          setFlashSegmentId(null);
+        }, 3000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [searchQuery, revealedSegmentId, segments]);
 
   // Obtener el nombre de fuente cargada para React Native Text
   const getNativeFontFamily = () => {
@@ -175,9 +198,13 @@ export function Paragraph({
       }
     };
 
+    const handleLayout = (event: LayoutChangeEvent) => {
+      onLayout?.(paragraphIndex, event.nativeEvent.layout.y);
+    };
+
     if (viewMode === 'german-only') {
       return (
-        <Pressable onPress={handlePress} style={[styles.paragraph, isFirst && styles.firstParagraph]}>
+        <Pressable onPress={handlePress} onLayout={handleLayout} style={[styles.paragraph, isFirst && styles.firstParagraph]}>
           <Text style={[styles.paragraphText, baseTextStyle, { color: theme.germanText }]} {...androidTextProps} selectable={true}>
             {germanParagraph}
           </Text>
@@ -187,13 +214,59 @@ export function Paragraph({
 
     if (viewMode === 'spanish-only') {
       return (
-        <Pressable onPress={handlePress} style={[styles.paragraph, isFirst && styles.firstParagraph]}>
+        <Pressable onPress={handlePress} onLayout={handleLayout} style={[styles.paragraph, isFirst && styles.firstParagraph]}>
           <Text style={[styles.paragraphText, baseTextStyle, { color: theme.spanishText }]} {...androidTextProps} selectable={true}>
             {spanishParagraph}
           </Text>
         </Pressable>
       );
     }
+
+    // Componente para renderizar palabras con resaltado de búsqueda
+    const HighlightedWords = ({ words, lang }: { words: string[]; lang: 'de' | 'es' }) => {
+      if (!searchQuery || searchQuery.trim().length === 0) {
+        return <>{words.map((w, i) => <React.Fragment key={i}>{w} </React.Fragment>)}</>;
+      }
+      
+      const fullText = words.join(' ');
+      const lowerText = fullText.toLowerCase();
+      const lowerQuery = searchQuery.toLowerCase().trim();
+      const result: React.ReactNode[] = [];
+      let lastIndex = 0;
+      let matchIndex = lowerText.indexOf(lowerQuery);
+      
+      while (matchIndex !== -1) {
+        // Texto antes del match
+        if (matchIndex > lastIndex) {
+          result.push(fullText.slice(lastIndex, matchIndex));
+        }
+        
+        // El match resaltado
+        const matchText = fullText.slice(matchIndex, matchIndex + searchQuery.length);
+        result.push(
+          <Text 
+            key={`match-${matchIndex}`}
+            style={{ 
+              backgroundColor: theme.accent + '40', 
+              color: theme.accent,
+              fontWeight: '700',
+            }}
+          >
+            {matchText}
+          </Text>
+        );
+        
+        lastIndex = matchIndex + searchQuery.length;
+        matchIndex = lowerText.indexOf(lowerQuery, lastIndex);
+      }
+      
+      // Texto restante
+      if (lastIndex < fullText.length) {
+        result.push(fullText.slice(lastIndex));
+      }
+      
+      return <>{result.length > 0 ? result : fullText}</>;
+    };
 
     // Modo Paralelo: mostrar segmento por segmento (alemán + español)
     const handleWordTouch = (segment: TextSegment, wordIndex: number, lang: 'de' | 'es') => {
@@ -230,63 +303,83 @@ export function Paragraph({
     };
 
     return (
-      <Pressable onPress={handlePress} style={[styles.parallelContainer, isFirst && styles.firstParagraph]}>
+      <Pressable onPress={handlePress} onLayout={handleLayout} style={[styles.parallelContainer, isFirst && styles.firstParagraph]}>
         {segments.map((segment, index) => {
           const isParagraphStart = segment.isParagraphStart;
           const hasMapping = segment.mapping && segment.mapping.length > 0;
+
+          const isFlashed = flashSegmentId === segment.id;
 
           return (
             <View
               key={segment.id}
               style={[
                 styles.segmentPair,
-                isParagraphStart && styles.paragraphStartSpacing
+                isParagraphStart && styles.paragraphStartSpacing,
+                isFlashed && { 
+                  backgroundColor: theme.accent + '20',
+                  borderRadius: 4,
+                  padding: 4,
+                  marginHorizontal: -4,
+                }
               ]}
             >
               {/* Texto alemán con palabras individuales tocables */}
               <Text style={[styles.germanSegmentText, baseTextStyle, { color: theme.germanText, textAlign: 'left' }]} {...androidTextProps} selectable={!hasMapping}>
-                {segment.german.map((word, wordIdx) => {
-                  const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'de');
-                  const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'de');
+                {!searchQuery ? (
+                  // Modo normal con palabras clickeables
+                  segment.german.map((word, wordIdx) => {
+                    const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'de');
+                    const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'de');
 
-                  return (
-                    <Text
-                      key={`de-${wordIdx}`}
-                      onPress={hasWordMapping ? () => handleWordTouch(segment, wordIdx, 'de') : undefined}
-                      style={{
-                        textDecorationLine: isHighlighted ? 'underline' : 'none',
-                        textDecorationColor: theme.accent,
-                        textDecorationStyle: 'solid',
-                        color: isHighlighted ? theme.accent : theme.germanText,
-                      }}
-                    >
-                      {word + ' '}
-                    </Text>
-                  );
-                })}
+                    return (
+                      <Text
+                        key={`de-${wordIdx}`}
+                        onPress={hasWordMapping ? () => handleWordTouch(segment, wordIdx, 'de') : undefined}
+                        style={{
+                          textDecorationLine: isHighlighted ? 'underline' : 'none',
+                          textDecorationColor: theme.accent,
+                          textDecorationStyle: 'solid',
+                          color: isHighlighted ? theme.accent : theme.germanText,
+                        }}
+                      >
+                        {word + ' '}
+                      </Text>
+                    );
+                  })
+                ) : (
+                  // Modo búsqueda con resaltado
+                  <HighlightedWords words={segment.german} lang="de" />
+                )}
               </Text>
 
               {/* Texto español con palabras individuales tocables */}
               <Text style={[styles.spanishSegmentText, baseTextStyle, { color: theme.spanishText, fontSize: fontSize * 0.80, textAlign: 'left', opacity: 0.7, fontWeight: '300' }]} {...androidTextProps} selectable={!hasMapping}>
-                {segment.spanish.map((word, wordIdx) => {
-                  const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'es');
-                  const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'es');
+                {!searchQuery ? (
+                  // Modo normal con palabras clickeables
+                  segment.spanish.map((word, wordIdx) => {
+                    const isHighlighted = isWordHighlighted(segment.id, wordIdx, 'es');
+                    const hasWordMapping = hasMapping && hasMappingForWord(segment.mapping, wordIdx, 'es');
 
-                  return (
-                    <Text
-                      key={`es-${wordIdx}`}
-                      onPress={hasWordMapping ? () => handleWordTouch(segment, wordIdx, 'es') : undefined}
-                      style={{
-                        textDecorationLine: isHighlighted ? 'underline' : 'none',
-                        textDecorationColor: theme.accent,
-                        textDecorationStyle: 'solid',
-                        color: isHighlighted ? theme.accent : theme.spanishText,
-                      }}
-                    >
-                      {word + ' '}
-                    </Text>
-                  );
-                })}
+                    return (
+                      <Text
+                        key={`es-${wordIdx}`}
+                        onPress={hasWordMapping ? () => handleWordTouch(segment, wordIdx, 'es') : undefined}
+                        style={{
+                          textDecorationLine: isHighlighted ? 'underline' : 'none',
+                          textDecorationColor: theme.accent,
+                          textDecorationStyle: 'solid',
+                          color: isHighlighted ? theme.accent : theme.spanishText,
+                        }}
+                      >
+                        {word + ' '}
+                      </Text>
+                    );
+                  })
+                ) : (
+                  // Modo búsqueda con resaltado
+                  <HighlightedWords words={segment.spanish} lang="es" />
+                )}
               </Text>
 
             </View>
@@ -387,6 +480,13 @@ export function Paragraph({
       border-right: 6px solid transparent;
       border-top: 6px solid ${theme.border};
     }
+    .search-highlight {
+      background-color: ${theme.accent}40;
+      color: ${theme.accent};
+      font-weight: 600;
+      border-radius: 2px;
+      padding: 0 2px;
+    }
   </style>
 </head>
 <body>
@@ -404,6 +504,52 @@ export function Paragraph({
       initialFont.textContent = \`${webFontCSS[fontFamily] || ''}\`;
       document.head.appendChild(initialFont);
       document.body.style.fontFamily = '${fontFamily}, Georgia, serif';
+      
+      // Función para resaltar texto buscado
+      function highlightSearchText(query) {
+        if (!query || query.trim().length === 0) return;
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+        const textNodes = [];
+        let node;
+        while (node = walker.nextNode()) {
+          if (node.parentElement && !node.parentElement.classList.contains('search-highlight')) {
+            textNodes.push(node);
+          }
+        }
+        const lowerQuery = query.toLowerCase();
+        textNodes.forEach(function(textNode) {
+          const text = textNode.textContent;
+          const lowerText = text.toLowerCase();
+          let index = lowerText.indexOf(lowerQuery);
+          if (index !== -1) {
+            const parent = textNode.parentNode;
+            const fragment = document.createDocumentFragment();
+            let lastIndex = 0;
+            while (index !== -1) {
+              // Texto antes del match
+              if (index > lastIndex) {
+                fragment.appendChild(document.createTextNode(text.slice(lastIndex, index)));
+              }
+              // Match resaltado
+              const highlight = document.createElement('span');
+              highlight.className = 'search-highlight';
+              highlight.textContent = text.slice(index, index + query.length);
+              fragment.appendChild(highlight);
+              
+              lastIndex = index + query.length;
+              index = lowerText.indexOf(lowerQuery, lastIndex);
+            }
+            // Texto restante
+            if (lastIndex < text.length) {
+              fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+            }
+            parent.replaceChild(fragment, textNode);
+          }
+        });
+      }
+      
+      // Resaltar si hay query
+      ${searchQuery ? `highlightSearchText('${searchQuery.replace(/'/g, "\\'")}');` : ''}
       
       const translations = window.translations;
       const tooltip = document.getElementById('active-tooltip');
@@ -549,6 +695,13 @@ export function Paragraph({
     .t.visible {
       display: inline-block;
     }
+    .search-highlight {
+      background-color: ${theme.accent}40;
+      color: ${theme.accent};
+      font-weight: 600;
+      border-radius: 2px;
+      padding: 0 2px;
+    }
   </style>
 </head>
 <body>
@@ -561,6 +714,52 @@ export function Paragraph({
       initialFont.textContent = \`${webFontCSS[fontFamily] || ''}\`;
       document.head.appendChild(initialFont);
       document.body.style.fontFamily = '${fontFamily}, Georgia, serif';
+      
+      // Función para resaltar texto buscado
+      function highlightSearchText(query) {
+        if (!query || query.trim().length === 0) return;
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+        const textNodes = [];
+        let node;
+        while (node = walker.nextNode()) {
+          if (node.parentElement && !node.parentElement.classList.contains('search-highlight')) {
+            textNodes.push(node);
+          }
+        }
+        const lowerQuery = query.toLowerCase();
+        textNodes.forEach(function(textNode) {
+          const text = textNode.textContent;
+          const lowerText = text.toLowerCase();
+          let index = lowerText.indexOf(lowerQuery);
+          if (index !== -1) {
+            const parent = textNode.parentNode;
+            const fragment = document.createDocumentFragment();
+            let lastIndex = 0;
+            while (index !== -1) {
+              // Texto antes del match
+              if (index > lastIndex) {
+                fragment.appendChild(document.createTextNode(text.slice(lastIndex, index)));
+              }
+              // Match resaltado
+              const highlight = document.createElement('span');
+              highlight.className = 'search-highlight';
+              highlight.textContent = text.slice(index, index + query.length);
+              fragment.appendChild(highlight);
+              
+              lastIndex = index + query.length;
+              index = lowerText.indexOf(lowerQuery, lastIndex);
+            }
+            // Texto restante
+            if (lastIndex < text.length) {
+              fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+            }
+            parent.replaceChild(fragment, textNode);
+          }
+        });
+      }
+      
+      // Resaltar si hay query
+      ${searchQuery ? `highlightSearchText('${searchQuery.replace(/'/g, "\\'")}');` : ''}
       
       let lastTap = 0, lastTapId = null, currentId = null;
       
@@ -622,13 +821,17 @@ export function Paragraph({
       } else if (data.type === 'doubleTap' && onDoubleTap) {
         onDoubleTap();
       }
-    } catch (e) {
+    } catch {
       // Ignorar
     }
   };
 
+  const handleImmersiveLayout = (event: LayoutChangeEvent) => {
+    onLayout?.(paragraphIndex, event.nativeEvent.layout.y);
+  };
+
   return (
-    <View style={[styles.paragraph, isFirst && styles.firstParagraph]}>
+    <View style={[styles.paragraph, isFirst && styles.firstParagraph]} onLayout={handleImmersiveLayout}>
       <WebView
         ref={webViewRef}
         source={{ html }}
