@@ -32,7 +32,7 @@ export function loadChapter(bookId: string, chapterId: string): Promise<Chapter>
       chapterCache.set(cacheKey, chapter);
       resolve(chapter);
     } catch (error) {
-      console.error(`Error loading chapter ${chapterId} from book ${bookId}:`, error);
+
       reject(new Error(`No se pudo cargar el capítulo ${chapterId}`));
     }
   });
@@ -59,7 +59,7 @@ export function loadBook(bookId: string): Promise<Book> {
       bookCache.set(bookId, book);
       resolve(book);
     } catch (error) {
-      console.error(`Error loading book ${bookId}:`, error);
+
       reject(new Error(`No se pudo cargar el libro ${bookId}`));
     }
   });

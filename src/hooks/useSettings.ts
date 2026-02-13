@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { UserSettings, FontFamily, ViewMode, TextAlignment, TranslationStyle } from '../types';
+import { UserSettings, FontFamily, ViewMode, TextAlignment, TranslationStyle, NavigationMode } from '../types';
 import { defaultFont } from '../constants/fonts';
+import { settingsEmitter } from '../lib/settingsEmitter';
 
 const SETTINGS_KEY = '@bivium_settings';
 
@@ -13,6 +14,7 @@ const defaultSettings: UserSettings = {
   viewMode: 'parallel',
   textAlignment: 'left',
   translationStyle: 'inline',
+  navigationMode: 'continuous',
 };
 
 export function useSettings() {
@@ -21,6 +23,16 @@ export function useSettings() {
 
   useEffect(() => {
     loadSettings();
+    
+    // Escuchar cambios de otros componentes
+    const handler = (newSettings: UserSettings) => {
+      setSettings(newSettings);
+    };
+    settingsEmitter.on('settingsChanged', handler);
+    
+    return () => {
+      settingsEmitter.off('settingsChanged', handler);
+    };
   }, []);
 
   const loadSettings = async () => {
@@ -30,7 +42,7 @@ export function useSettings() {
         setSettings({ ...defaultSettings, ...JSON.parse(stored) });
       }
     } catch (error) {
-      console.error('Error loading settings:', error);
+
     } finally {
       setIsLoading(false);
     }
@@ -41,8 +53,10 @@ export function useSettings() {
       const updated = { ...settings, ...newSettings };
       setSettings(updated);
       await AsyncStorage.setItem(SETTINGS_KEY, JSON.stringify(updated));
+      // Emitir evento para otros componentes
+      settingsEmitter.emit('settingsChanged', updated);
     } catch (error) {
-      console.error('Error saving settings:', error);
+
     }
   }, [settings]);
 
@@ -70,6 +84,10 @@ export function useSettings() {
     saveSettings({ translationStyle });
   }, [saveSettings]);
 
+  const setNavigationMode = useCallback((navigationMode: NavigationMode) => {
+    saveSettings({ navigationMode });
+  }, [saveSettings]);
+
   return {
     settings,
     isLoading,
@@ -80,5 +98,6 @@ export function useSettings() {
     setViewMode,
     setTextAlignment,
     setTranslationStyle,
+    setNavigationMode,
   };
 }

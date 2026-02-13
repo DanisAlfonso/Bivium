@@ -49,7 +49,7 @@ export default function SearchScreen() {
       });
       setResults(searchResults);
     } catch (error) {
-      console.error('Search error:', error);
+
     } finally {
       setIsSearching(false);
     }

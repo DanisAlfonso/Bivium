@@ -58,7 +58,7 @@ export default function LibraryScreen() {
         setProgressMap(allProgress);
       }
     } catch (error) {
-      console.error('Error loading progress:', error);
+
     }
   };
 

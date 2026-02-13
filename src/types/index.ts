@@ -38,6 +38,8 @@ export interface FontOption {
 
 export type ViewMode = 'parallel' | 'german-only' | 'spanish-only' | 'immersive';
 
+export type NavigationMode = 'continuous' | 'paginated';
+
 export type TextAlignment = 'left' | 'justify';
 
 export type TranslationStyle = 'inline' | 'tooltip';
@@ -56,4 +58,5 @@ export interface UserSettings {
   viewMode: ViewMode;
   textAlignment: TextAlignment;
   translationStyle: TranslationStyle;
+  navigationMode: NavigationMode;
 }

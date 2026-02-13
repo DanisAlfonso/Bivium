@@ -9,7 +9,7 @@ import {
   useColorScheme,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { FontFamily, ViewMode, TextAlignment, TranslationStyle } from '../types';
+import { FontFamily, ViewMode, TextAlignment, TranslationStyle, NavigationMode } from '../types';
 import { fontOptions } from '../constants/fonts';
 import { lightTheme, darkTheme } from '../constants/theme';
 
@@ -22,12 +22,14 @@ interface SettingsPanelProps {
   viewMode: ViewMode;
   textAlignment: TextAlignment;
   translationStyle: TranslationStyle;
+  navigationMode: NavigationMode;
   onFontFamilyChange: (font: FontFamily) => void;
   onFontSizeChange: (size: number) => void;
   onLineHeightChange: (height: number) => void;
   onViewModeChange: (mode: ViewMode) => void;
   onTextAlignmentChange: (alignment: TextAlignment) => void;
   onTranslationStyleChange: (style: TranslationStyle) => void;
+  onNavigationModeChange: (mode: NavigationMode) => void;
 }
 
 export function SettingsPanel({
@@ -39,12 +41,14 @@ export function SettingsPanel({
   viewMode,
   textAlignment,
   translationStyle,
+  navigationMode,
   onFontFamilyChange,
   onFontSizeChange,
   onLineHeightChange,
   onViewModeChange,
   onTextAlignmentChange,
   onTranslationStyleChange,
+  onNavigationModeChange,
 }: SettingsPanelProps) {
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
@@ -115,6 +119,53 @@ export function SettingsPanel({
                     </Text>
                   </TouchableOpacity>
                 ))}
+              </View>
+            </View>
+
+            {/* Navigation Mode */}
+            <View style={styles.section}>
+              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>Navegación</Text>
+              <View style={styles.toggleContainer}>
+                <TouchableOpacity
+                  style={[
+                    styles.toggleButton,
+                    navigationMode === 'continuous' && { backgroundColor: theme.accent },
+                    { borderColor: theme.border },
+                  ]}
+                  onPress={() => onNavigationModeChange('continuous')}
+                >
+                  <Ionicons 
+                    name="infinite-outline" 
+                    size={18} 
+                    color={navigationMode === 'continuous' ? '#fff' : theme.text} 
+                  />
+                  <Text style={[styles.toggleText, { color: navigationMode === 'continuous' ? '#fff' : theme.text }]}>
+                    Continuo
+                  </Text>
+                  <Text style={[styles.toggleSubtext, { color: navigationMode === 'continuous' ? 'rgba(255,255,255,0.7)' : theme.textMuted }]}>
+                    Scroll vertical
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[
+                    styles.toggleButton,
+                    navigationMode === 'paginated' && { backgroundColor: theme.accent },
+                    { borderColor: theme.border },
+                  ]}
+                  onPress={() => onNavigationModeChange('paginated')}
+                >
+                  <Ionicons 
+                    name="book-outline" 
+                    size={18} 
+                    color={navigationMode === 'paginated' ? '#fff' : theme.text} 
+                  />
+                  <Text style={[styles.toggleText, { color: navigationMode === 'paginated' ? '#fff' : theme.text }]}>
+                    Paginado
+                  </Text>
+                  <Text style={[styles.toggleSubtext, { color: navigationMode === 'paginated' ? 'rgba(255,255,255,0.7)' : theme.textMuted }]}>
+                    Deslizar horizontal
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
 

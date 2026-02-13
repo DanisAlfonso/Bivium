@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
   useColorScheme,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { router, useLocalSearchParams } from 'expo-router';
+import { router, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { lightTheme, darkTheme } from '../src/constants/theme';
@@ -31,6 +31,28 @@ export default function ChaptersScreen() {
     loadData();
   }, [bookId]);
 
+  // Recargar progreso cuando la pantalla vuelve a estar en foco
+  useFocusEffect(
+    useCallback(() => {
+
+      loadProgressOnly();
+    }, [])
+  );
+
+  const loadProgressOnly = async () => {
+    try {
+      const stored = await AsyncStorage.getItem(PROGRESS_KEY);
+
+      if (stored) {
+        const allProgress: Record<string, ReadingProgress> = JSON.parse(stored);
+
+        setProgressMap(allProgress);
+      }
+    } catch (error) {
+
+    }
+  };
+
   const loadData = async () => {
     try {
       const [bookData, stored] = await Promise.all([
@@ -45,16 +67,38 @@ export default function ChaptersScreen() {
         setProgressMap(allProgress);
       }
     } catch (error) {
-      console.error('Error loading data:', error);
+
     } finally {
       setLoading(false);
     }
   };
 
+  // Función para convertir chapter-2 → ch2
+  const getShortChapterId = (chapterId: string) => {
+    const match = chapterId.match(/chapter-(\d+)/);
+    if (match) {
+      return `ch${match[1]}`;
+    }
+    return chapterId;
+  };
+
   const handleSelectChapter = (chapterId: string) => {
+    // La key en progressMap incluye el bookId: "tod-in-venedig-ch2"
+    const shortId = getShortChapterId(chapterId);
+    const progressKey = `${bookId}-${shortId}`;
+    const progress = progressMap[progressKey];
+
+    
+    // Si hay progreso guardado, navegar al segmento específico
+    const params: any = { bookId, chapterId };
+    if (progress && progress.segmentIndex > 0) {
+      params.segmentIndex = progress.segmentIndex.toString();
+
+    }
+    
     router.push({
       pathname: '/reader',
-      params: { bookId, chapterId }
+      params
     });
   };
 
@@ -70,7 +114,9 @@ export default function ChaptersScreen() {
   };
 
   const getChapterProgress = (chapterId: string) => {
-    const progress = progressMap[chapterId];
+    const shortId = getShortChapterId(chapterId);
+    const progressKey = `${bookId}-${shortId}`;
+    const progress = progressMap[progressKey];
     return progress || null;
   };
 

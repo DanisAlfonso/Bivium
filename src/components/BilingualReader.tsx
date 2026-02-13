@@ -80,6 +80,8 @@ export function BilingualReader({ chapter, onBack, initialSegmentId, searchQuery
     setViewMode,
     setTextAlignment,
     setTranslationStyle,
+    setNavigationMode,
+    saveSettings,
   } = useSettings();
   
   const { progress, saveProgress } = useProgress(chapter.id);
@@ -268,15 +270,24 @@ export function BilingualReader({ chapter, onBack, initialSegmentId, searchQuery
     }
   }, [chapter.segments.length, saveProgress]);
 
+  // Ref para tener acceso al valor actual de scrollY en la cleanup function
+  const scrollYRef = useRef(scrollY);
+  
+  // Actualizar ref cuando cambia scrollY
+  useEffect(() => {
+    scrollYRef.current = scrollY;
+  }, [scrollY]);
+
   // Guardar progreso al desmontar el componente (cuando el usuario sale)
   useEffect(() => {
     return () => {
-      const finalSegment = Math.floor(scrollY / 50);
+      const finalSegment = Math.floor(scrollYRef.current / 50);
       if (finalSegment > 0) {
         saveProgress(finalSegment);
       }
     };
-  }, [scrollY, saveProgress]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [saveProgress]);
 
   const toggleSegmentReveal = useCallback((segmentId: string) => {
     setRevealedSegmentId(prev => {
@@ -302,6 +313,15 @@ export function BilingualReader({ chapter, onBack, initialSegmentId, searchQuery
     outputRange: [0, -HEADER_HEIGHT],
   });
 
+  // Handler para el botón atrás - guarda progreso antes de navegar
+  const handleBack = useCallback(() => {
+    const finalSegment = Math.floor(scrollY / 50);
+    if (finalSegment > 0) {
+      saveProgress(finalSegment);
+    }
+    onBack();
+  }, [scrollY, saveProgress, onBack]);
+
   if (settingsLoading) {
     return null;
   }
@@ -317,7 +337,7 @@ export function BilingualReader({ chapter, onBack, initialSegmentId, searchQuery
       >
         <ReaderHeader
           chapter={chapter}
-          onBack={onBack}
+          onBack={handleBack}
           onOpenSettings={() => setSettingsVisible(true)}
           progress={progressPercent}
         />
@@ -375,12 +395,14 @@ export function BilingualReader({ chapter, onBack, initialSegmentId, searchQuery
         viewMode={settings.viewMode}
         textAlignment={settings.textAlignment}
         translationStyle={settings.translationStyle}
+        navigationMode={settings.navigationMode}
         onFontFamilyChange={setFontFamily}
         onFontSizeChange={setFontSize}
         onLineHeightChange={setLineHeight}
         onViewModeChange={setViewMode}
         onTextAlignmentChange={setTextAlignment}
         onTranslationStyleChange={setTranslationStyle}
+        onNavigationModeChange={setNavigationMode}
       />
     </View>
   );
