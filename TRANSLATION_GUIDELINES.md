@@ -6,6 +6,60 @@ This document defines the standards for creating bilingual text segments with pr
 
 ---
 
+## Part 0: Source Text Integrity (CRITICAL)
+
+### 0.1 German Text Must Match Original Exactly
+
+**The German text in the JSON file MUST be identical to the original source text.**
+
+Before adding any segments, verify:
+- ✅ **Word count matches** - Count words in source and in JSON
+- ✅ **Spelling is identical** - No typos, no changes in capitalization
+- ✅ **Punctuation is preserved** - Commas, periods, semicolons in exact positions
+- ✅ **No missing words** - Every word from the source must be present
+- ✅ **No extra words** - Do not add words not in the source
+- ✅ **Line breaks respected** - Paragraph breaks must align with original
+
+### 0.2 Verification Process
+
+**Always work from the authoritative source text file** (e.g., `chapter1.txt`).
+
+❌ **WRONG**: Transcribing from memory or retyping
+```json
+{ "german": ["Es", "war", "Anfang", "Mai", "und,"] }  // Typo risk, missing words
+```
+
+✅ **CORRECT**: Copy-paste directly from source, then segment
+```json
+{ "german": ["Es", "war", "Anfang", "Mai", "und,"] }  // Verified against chapter1.txt line 37
+```
+
+### 0.3 Cross-Reference Method
+
+When adding segments, constantly verify:
+1. **Word-by-word comparison** between source and JSON arrays
+2. **Running word count** - Keep track of how many words processed
+3. **Context verification** - Check that surrounding words match
+
+Example verification:
+```
+Source (line 37): "Es war Anfang Mai und,"
+JSON: ["Es", "war", "Anfang", "Mai", "und,"]
+Count: 5 words ✅
+```
+
+### 0.4 Common Errors to Avoid
+
+- **Transposition errors**: "Schienengeleise" instead of "Schienengeleise"
+- **Missing umlauts**: "Schwabing" instead of "Schwabing" (if applicable)
+- **Wrong capitalization**: "der" instead of "Der" at sentence start
+- **Missing punctuation**: "und" instead of "und,"
+- **Word omission**: Skipping "sich" or "ihm" accidentally
+
+**Rule**: If the German text doesn't match the original exactly, the segment is invalid regardless of how good the translation or mapping is.
+
+---
+
 ## Part 1: Syntactic Segmentation
 
 ### Core Principle
@@ -221,15 +275,24 @@ Example: `["aus", "allein"]` → `["alone"]` ("aus" is integrated into the Spani
 
 Before considering a segment as valid, verify:
 
+### Content Verification
+0. **Does the German text match the source file EXACTLY?** ✅ (Character-by-character verification)
+
+### Syntactic Verification
 1. Does it contain a **complete syntactic unit** (not a fragment)? ✅
 2. Does it make sense on its own in German? ✅
 3. Does it make sense on its own in Spanish? ✅
 4. Does the translation correspond exactly to the German? ✅
 5. When joined with previous and next, does it flow correctly? ✅
 6. Did I cut **between** syntactic groups, not **within** one? ✅
+
+### Mapping Verification
 7. **Are ALL mappings correct and non-overlapping?** ✅
 8. **Does every German word map to at least one Spanish word?** ✅
 9. **Does every Spanish word map to at least one German word?** ✅
+
+### Final Count Verification
+10. **Total word count in JSON matches source?** ✅ (Count all German words in all segments and compare to source text)
 
 ---
 

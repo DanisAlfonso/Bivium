@@ -195,7 +195,7 @@ export function PaginatedReader({ chapter, onBack, initialSegmentId, initialSegm
       }
       
       const MIN_SEGMENTS_PER_PAGE = 2;
-      const MAX_SEGMENTS_PER_PAGE = isImmersiveMode ? 12 : 8;
+      const MAX_SEGMENTS_PER_PAGE = isImmersiveMode ? 12 : 6;
       
       let pageNumber = 1;
       let currentPageSegments: TextSegment[] = [];
