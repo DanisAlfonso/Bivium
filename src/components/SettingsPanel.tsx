@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,9 +9,10 @@ import {
   useColorScheme,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { FontFamily, ViewMode, TextAlignment, TranslationStyle, NavigationMode } from '../types';
+import { FontFamily, ViewMode, TextAlignment, TranslationStyle, NavigationMode, Language } from '../types';
 import { fontOptions } from '../constants/fonts';
 import { lightTheme, darkTheme } from '../constants/theme';
+import { useI18n } from '../i18n';
 
 interface SettingsPanelProps {
   visible: boolean;
@@ -23,6 +24,7 @@ interface SettingsPanelProps {
   textAlignment: TextAlignment;
   translationStyle: TranslationStyle;
   navigationMode: NavigationMode;
+  language: Language;
   onFontFamilyChange: (font: FontFamily) => void;
   onFontSizeChange: (size: number) => void;
   onLineHeightChange: (height: number) => void;
@@ -30,6 +32,7 @@ interface SettingsPanelProps {
   onTextAlignmentChange: (alignment: TextAlignment) => void;
   onTranslationStyleChange: (style: TranslationStyle) => void;
   onNavigationModeChange: (mode: NavigationMode) => void;
+  onLanguageChange: (lang: Language) => void;
 }
 
 export function SettingsPanel({
@@ -42,6 +45,7 @@ export function SettingsPanel({
   textAlignment,
   translationStyle,
   navigationMode,
+  language,
   onFontFamilyChange,
   onFontSizeChange,
   onLineHeightChange,
@@ -49,12 +53,35 @@ export function SettingsPanel({
   onTextAlignmentChange,
   onTranslationStyleChange,
   onNavigationModeChange,
+  onLanguageChange,
 }: SettingsPanelProps) {
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
+  const { t } = useI18n();
+  const [showLanguageOptions, setShowLanguageOptions] = useState(false);
 
   const isImmersiveMode = viewMode === 'immersive';
   const isParallelMode = viewMode === 'parallel';
+
+  const viewModes = [
+    { value: 'parallel' as ViewMode, label: t('settings.viewMode.parallel'), icon: 'layers-outline', desc: t('settings.viewMode.parallelDesc') },
+    { value: 'immersive' as ViewMode, label: t('settings.viewMode.immersive'), icon: 'finger-print-outline', desc: t('settings.viewMode.immersiveDesc') },
+    { value: 'german-only' as ViewMode, label: t('settings.viewMode.germanOnly'), icon: 'language-outline', desc: t('settings.viewMode.germanOnlyDesc') },
+    { value: 'spanish-only' as ViewMode, label: t('settings.viewMode.spanishOnly'), icon: 'text-outline', desc: t('settings.viewMode.spanishOnlyDesc') },
+  ];
+
+  const lineHeightOptions = [
+    { label: t('settings.lineHeight.compact'), value: 1.4 },
+    { label: t('settings.lineHeight.normal'), value: 1.6 },
+    { label: t('settings.lineHeight.wide'), value: 1.8 },
+    { label: t('settings.lineHeight.generous'), value: 2.0 },
+  ];
+
+  const languages = [
+    { value: 'es' as Language, code: 'ES', nativeName: 'Español' },
+    { value: 'de' as Language, code: 'DE', nativeName: 'Deutsch' },
+    { value: 'en' as Language, code: 'EN', nativeName: 'English' },
+  ];
 
   return (
     <Modal
@@ -67,23 +94,86 @@ export function SettingsPanel({
         <TouchableOpacity style={styles.backdrop} onPress={onClose} />
         <View style={[styles.panel, { backgroundColor: theme.surface }]}>
           <View style={[styles.header, { borderBottomColor: theme.border }]}>
-            <Text style={[styles.headerTitle, { color: theme.text }]}>Ajustes de lectura</Text>
+            <Text style={[styles.headerTitle, { color: theme.text }]}>{t('settings.title')}</Text>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
               <Ionicons name="close" size={24} color={theme.text} />
             </TouchableOpacity>
           </View>
 
           <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+            {/* Language Selection - Compact */}
+            <View style={styles.section}>
+              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>
+                <Ionicons name="language-outline" size={14} color={theme.accent} /> {t('settings.language.title')}
+              </Text>
+              <TouchableOpacity
+                style={[styles.languageSelector, { borderColor: theme.border, backgroundColor: 'rgba(0,0,0,0.03)' }]}
+                onPress={() => setShowLanguageOptions(!showLanguageOptions)}
+              >
+                <View style={styles.languageCodeContainer}>
+                  <Text style={[styles.languageCode, { color: theme.accent, backgroundColor: theme.accentLight + '30' }]}>
+                    {languages.find(l => l.value === language)?.code}
+                  </Text>
+                </View>
+                <Text style={[styles.languageNativeName, { color: theme.text }]}>
+                  {languages.find(l => l.value === language)?.nativeName}
+                </Text>
+                <Ionicons 
+                  name={showLanguageOptions ? "chevron-up" : "chevron-down"} 
+                  size={20} 
+                  color={theme.textMuted} 
+                />
+              </TouchableOpacity>
+              
+              {showLanguageOptions && (
+                <View style={[styles.languageDropdown, { borderColor: theme.border, backgroundColor: theme.background }]}>
+                  {languages.map((lang) => (
+                    <TouchableOpacity
+                      key={lang.value}
+                      style={[
+                        styles.languageOption,
+                        language === lang.value && { backgroundColor: theme.accent + '15' },
+                      ]}
+                      onPress={() => {
+                        onLanguageChange(lang.value);
+                        setShowLanguageOptions(false);
+                      }}
+                    >
+                      <View style={styles.languageCodeContainer}>
+                        <Text 
+                          style={[
+                            styles.languageCode, 
+                            { 
+                              color: language === lang.value ? '#fff' : theme.textMuted,
+                              backgroundColor: language === lang.value ? theme.accent : theme.surface,
+                            }
+                          ]}
+                        >
+                          {lang.code}
+                        </Text>
+                      </View>
+                      <Text
+                        style={[
+                          styles.languageOptionText,
+                          { color: language === lang.value ? theme.accent : theme.text },
+                        ]}
+                      >
+                        {lang.nativeName}
+                      </Text>
+                      {language === lang.value && (
+                        <Ionicons name="checkmark" size={18} color={theme.accent} />
+                      )}
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              )}
+            </View>
+
             {/* View Mode */}
             <View style={styles.section}>
-              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>Modo de vista</Text>
+              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>{t('settings.viewMode.title')}</Text>
               <View style={styles.viewModeGrid}>
-                {[
-                  { value: 'parallel' as ViewMode, label: 'Paralelo', icon: 'layers-outline', desc: 'Alemán + español' },
-                  { value: 'immersive' as ViewMode, label: 'Inmersivo', icon: 'finger-print-outline', desc: 'Tap para revelar' },
-                  { value: 'german-only' as ViewMode, label: 'Solo alemán', icon: 'language-outline', desc: 'Texto original' },
-                  { value: 'spanish-only' as ViewMode, label: 'Solo español', icon: 'text-outline', desc: 'Traducción' },
-                ].map((mode) => (
+                {viewModes.map((mode) => (
                   <TouchableOpacity
                     key={mode.value}
                     style={[
@@ -124,7 +214,7 @@ export function SettingsPanel({
 
             {/* Navigation Mode */}
             <View style={styles.section}>
-              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>Navegación</Text>
+              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>{t('settings.navigation.title')}</Text>
               <View style={styles.toggleContainer}>
                 <TouchableOpacity
                   style={[
@@ -140,10 +230,10 @@ export function SettingsPanel({
                     color={navigationMode === 'continuous' ? '#fff' : theme.text} 
                   />
                   <Text style={[styles.toggleText, { color: navigationMode === 'continuous' ? '#fff' : theme.text }]}>
-                    Continuo
+                    {t('settings.navigation.continuous')}
                   </Text>
                   <Text style={[styles.toggleSubtext, { color: navigationMode === 'continuous' ? 'rgba(255,255,255,0.7)' : theme.textMuted }]}>
-                    Scroll vertical
+                    {t('settings.navigation.continuousDesc')}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -160,10 +250,10 @@ export function SettingsPanel({
                     color={navigationMode === 'paginated' ? '#fff' : theme.text} 
                   />
                   <Text style={[styles.toggleText, { color: navigationMode === 'paginated' ? '#fff' : theme.text }]}>
-                    Paginado
+                    {t('settings.navigation.paginated')}
                   </Text>
                   <Text style={[styles.toggleSubtext, { color: navigationMode === 'paginated' ? 'rgba(255,255,255,0.7)' : theme.textMuted }]}>
-                    Deslizar horizontal
+                    {t('settings.navigation.paginatedDesc')}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -173,10 +263,10 @@ export function SettingsPanel({
             {isImmersiveMode && (
               <View style={[styles.section, styles.highlightedSection, { backgroundColor: theme.highlight }]}>
                 <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>
-                  <Ionicons name="color-wand-outline" size={14} color={theme.accent} /> Estilo de traducción
+                  <Ionicons name="color-wand-outline" size={14} color={theme.accent} /> {t('settings.translationStyle.title')}
                 </Text>
                 <Text style={[styles.sectionDesc, { color: theme.textSecondary }]}>
-                  ¿Cómo mostrar la traducción?
+                  {t('settings.translationStyle.subtitle')}
                 </Text>
                 <View style={styles.toggleContainer}>
                   <TouchableOpacity
@@ -193,10 +283,10 @@ export function SettingsPanel({
                       color={translationStyle === 'inline' ? '#fff' : theme.text} 
                     />
                     <Text style={[styles.toggleText, { color: translationStyle === 'inline' ? '#fff' : theme.text }]}>
-                      Inline
+                      {t('settings.translationStyle.inline')}
                     </Text>
                     <Text style={[styles.toggleSubtext, { color: translationStyle === 'inline' ? 'rgba(255,255,255,0.7)' : theme.textMuted }]}>
-                      Debajo del texto
+                      {t('settings.translationStyle.inlineDesc')}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -213,10 +303,10 @@ export function SettingsPanel({
                       color={translationStyle === 'tooltip' ? '#fff' : theme.text} 
                     />
                     <Text style={[styles.toggleText, { color: translationStyle === 'tooltip' ? '#fff' : theme.text }]}>
-                      Tooltip
+                      {t('settings.translationStyle.tooltip')}
                     </Text>
                     <Text style={[styles.toggleSubtext, { color: translationStyle === 'tooltip' ? 'rgba(255,255,255,0.7)' : theme.textMuted }]}>
-                      Carta flotante
+                      {t('settings.translationStyle.tooltipDesc')}
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -226,7 +316,7 @@ export function SettingsPanel({
             {/* Text Alignment - Oculto en modo Paralelo */}
             {!isParallelMode && (
             <View style={styles.section}>
-              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>Alineación del texto</Text>
+              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>{t('settings.textAlignment.title')}</Text>
               <View style={styles.alignmentContainer}>
                 <TouchableOpacity
                   style={[
@@ -243,7 +333,7 @@ export function SettingsPanel({
                     <View style={[styles.line, { backgroundColor: textAlignment === 'left' ? '#fff' : theme.text, width: 16 }]} />
                   </View>
                   <Text style={[styles.alignmentText, { color: textAlignment === 'left' ? '#fff' : theme.text }]}>
-                    Izquierda
+                    {t('settings.textAlignment.left')}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -261,7 +351,7 @@ export function SettingsPanel({
                     <View style={[styles.line, { backgroundColor: textAlignment === 'justify' ? '#fff' : theme.text, width: 24 }]} />
                   </View>
                   <Text style={[styles.alignmentText, { color: textAlignment === 'justify' ? '#fff' : theme.text }]}>
-                    Justificado
+                    {t('settings.textAlignment.justify')}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -270,7 +360,7 @@ export function SettingsPanel({
 
             {/* Font Family */}
             <View style={styles.section}>
-              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>Tipografía</Text>
+              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>{t('settings.typography.title')}</Text>
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -308,7 +398,7 @@ export function SettingsPanel({
                         },
                       ]}
                     >
-                      {font.category === 'serif' ? 'Serif' : font.category === 'sans' ? 'Sans' : 'Mono'}
+                      {font.category === 'serif' ? t('settings.typography.serif') : font.category === 'sans' ? t('settings.typography.sans') : t('settings.typography.mono')}
                     </Text>
                   </TouchableOpacity>
                 ))}
@@ -317,7 +407,7 @@ export function SettingsPanel({
 
             {/* Font Size */}
             <View style={styles.section}>
-              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>Tamaño de texto</Text>
+              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>{t('settings.fontSize.title')}</Text>
               <View style={styles.sliderContainer}>
                 <Text style={[styles.sliderLabel, { color: theme.textMuted }]}>A</Text>
                 <View style={styles.sizeButtons}>
@@ -348,9 +438,9 @@ export function SettingsPanel({
 
             {/* Line Height */}
             <View style={styles.section}>
-              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>Interlineado</Text>
+              <Text style={[styles.sectionTitle, { color: theme.textSecondary }]}>{t('settings.lineHeight.title')}</Text>
               <View style={styles.sizeButtons}>
-                {[{ label: 'Compacto', value: 1.4 }, { label: 'Normal', value: 1.6 }, { label: 'Amplio', value: 1.8 }, { label: 'Generoso', value: 2.0 }].map((option) => (
+                {lineHeightOptions.map((option) => (
                   <TouchableOpacity
                     key={option.value}
                     style={[
@@ -430,6 +520,50 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     marginTop: -8,
   },
+  // Language selector styles - Compact
+  languageSelector: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    borderRadius: 10,
+    borderWidth: 1,
+  },
+  languageDropdown: {
+    marginTop: 8,
+    borderRadius: 10,
+    borderWidth: 1,
+    overflow: 'hidden',
+  },
+  languageOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  languageOptionText: {
+    flex: 1,
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  languageCodeContainer: {
+    marginRight: 10,
+  },
+  languageCode: {
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+    paddingHorizontal: 5,
+    paddingVertical: 2,
+    borderRadius: 3,
+    overflow: 'hidden',
+  },
+  languageNativeName: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: '500',
+  },
+  // View mode styles
   viewModeGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',

@@ -17,12 +17,14 @@ import { lightTheme, darkTheme } from '../src/constants/theme';
 import { searchInBook, SearchResult, highlightMatches } from '../src/lib/search';
 import { loadBook } from '../src/lib/bookLoader';
 import { Book } from '../src/types';
+import { useI18n } from '../src/i18n';
 
 export default function SearchScreen() {
   const { bookId } = useLocalSearchParams<{ bookId: string }>();
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
   const insets = useSafeAreaInsets();
+  const { t } = useI18n();
 
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -49,7 +51,7 @@ export default function SearchScreen() {
       });
       setResults(searchResults);
     } catch (error) {
-
+      // Silently handle error
     } finally {
       setIsSearching(false);
     }
@@ -99,7 +101,7 @@ export default function SearchScreen() {
         </TouchableOpacity>
         
         <View style={styles.headerText}>
-          <Text style={[styles.title, { color: theme.text }]}>Suchen</Text>
+          <Text style={[styles.title, { color: theme.text }]}>{t('search.title')}</Text>
           {book && (
             <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
               {book.title.de}
@@ -115,7 +117,7 @@ export default function SearchScreen() {
         <Ionicons name="search" size={20} color={theme.textMuted} />
         <TextInput
           style={[styles.searchInput, { color: theme.text }]}
-          placeholder="Text suchen..."
+          placeholder={t('search.placeholder')}
           placeholderTextColor={theme.textMuted}
           value={query}
           onChangeText={setQuery}
@@ -142,7 +144,7 @@ export default function SearchScreen() {
         ) : (
           <>
             <Ionicons name="search" size={18} color="#fff" />
-            <Text style={styles.searchButtonText}>Suchen</Text>
+            <Text style={styles.searchButtonText}>{t('search.button')}</Text>
           </>
         )}
       </TouchableOpacity>
@@ -157,10 +159,10 @@ export default function SearchScreen() {
           <View style={styles.emptyState}>
             <Ionicons name="search-outline" size={48} color={theme.textMuted} />
             <Text style={[styles.emptyText, { color: theme.textSecondary }]}>
-              Keine Ergebnisse gefunden
+              {t('search.noResults')}
             </Text>
             <Text style={[styles.emptySubtext, { color: theme.textMuted }]}>
-              Versuchen Sie es mit anderen Suchbegriffen
+              {t('search.tryDifferent')}
             </Text>
           </View>
         )}
@@ -168,7 +170,9 @@ export default function SearchScreen() {
         {results.length > 0 && (
           <View style={styles.resultsHeader}>
             <Text style={[styles.resultsCount, { color: theme.textSecondary }]}>
-              {results.length} {results.length === 1 ? 'Ergebnis' : 'Ergebnisse'} gefunden
+              {results.length === 1 
+                ? t('search.resultFound', { count: results.length })
+                : t('search.resultsFound', { count: results.length })}
             </Text>
           </View>
         )}
@@ -187,7 +191,7 @@ export default function SearchScreen() {
                 </Text>
               </View>
               <Text style={[styles.segmentInfo, { color: theme.textMuted }]}>
-                Abschnitt {result.segmentIndex + 1}
+                {t('search.segment')} {result.segmentIndex + 1}
               </Text>
             </View>
 

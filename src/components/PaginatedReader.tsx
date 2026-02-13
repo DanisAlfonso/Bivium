@@ -19,6 +19,7 @@ import { useProgress } from '../hooks/useProgress';
 import { ReaderHeader } from './ReaderHeader';
 import { SettingsPanel } from './SettingsPanel';
 import * as NavigationBar from 'expo-navigation-bar';
+import { useI18n } from '../i18n';
 import { WebView, WebViewMessageEvent } from 'react-native-webview';
 import { webFontCSS } from '../constants/webFonts';
 
@@ -113,6 +114,8 @@ export function PaginatedReader({ chapter, onBack, initialSegmentId, initialSegm
     setTranslationStyle,
     setNavigationMode,
   } = useSettings();
+  
+  const { language, setLanguage, t } = useI18n();
 
   const { progress, saveProgress } = useProgress(chapter.id);
 
@@ -847,7 +850,7 @@ export function PaginatedReader({ chapter, onBack, initialSegmentId, initialSegm
       {!headerVisible && showHint && (
         <View style={[styles.hintContainer, { backgroundColor: theme.surface + 'CC' }]}>
           <Text style={[styles.hintText, { color: theme.textSecondary }]}>
-            Toca para controles
+            {t('reader.tapHint')}
           </Text>
         </View>
       )}
@@ -883,6 +886,7 @@ export function PaginatedReader({ chapter, onBack, initialSegmentId, initialSegm
         textAlignment={settings.textAlignment}
         translationStyle={settings.translationStyle}
         navigationMode={settings.navigationMode}
+        language={language}
         onFontFamilyChange={setFontFamily}
         onFontSizeChange={setFontSize}
         onLineHeightChange={setLineHeight}
@@ -890,6 +894,7 @@ export function PaginatedReader({ chapter, onBack, initialSegmentId, initialSegm
         onTextAlignmentChange={setTextAlignment}
         onTranslationStyleChange={setTranslationStyle}
         onNavigationModeChange={setNavigationMode}
+        onLanguageChange={setLanguage}
       />
 
 

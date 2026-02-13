@@ -44,6 +44,8 @@ export type TextAlignment = 'left' | 'justify';
 
 export type TranslationStyle = 'inline' | 'tooltip';
 
+export type Language = 'es' | 'de' | 'en';
+
 export interface ReadingProgress {
   chapterId: string;
   segmentIndex: number;

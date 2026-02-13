@@ -17,6 +17,7 @@ import { useProgress } from '../hooks/useProgress';
 import { ReaderHeader } from './ReaderHeader';
 import { SettingsPanel } from './SettingsPanel';
 import { Paragraph } from './Paragraph';
+import { useI18n } from '../i18n';
 
 interface BilingualReaderProps {
   chapter: Chapter;
@@ -83,6 +84,8 @@ export function BilingualReader({ chapter, onBack, initialSegmentId, searchQuery
     setNavigationMode,
     saveSettings,
   } = useSettings();
+  
+  const { language, setLanguage, t } = useI18n();
   
   const { progress, saveProgress } = useProgress(chapter.id);
 
@@ -346,7 +349,7 @@ export function BilingualReader({ chapter, onBack, initialSegmentId, searchQuery
       {!headerVisible && showHint && (
         <View style={[styles.hintContainer, { backgroundColor: theme.surface + 'CC' }]}>
           <Text style={[styles.hintText, { color: theme.textSecondary }]}>
-            Doble tap para controles
+            {t('reader.doubleTapHint')}
           </Text>
         </View>
       )}
@@ -396,6 +399,7 @@ export function BilingualReader({ chapter, onBack, initialSegmentId, searchQuery
         textAlignment={settings.textAlignment}
         translationStyle={settings.translationStyle}
         navigationMode={settings.navigationMode}
+        language={language}
         onFontFamilyChange={setFontFamily}
         onFontSizeChange={setFontSize}
         onLineHeightChange={setLineHeight}
@@ -403,6 +407,7 @@ export function BilingualReader({ chapter, onBack, initialSegmentId, searchQuery
         onTextAlignmentChange={setTextAlignment}
         onTranslationStyleChange={setTranslationStyle}
         onNavigationModeChange={setNavigationMode}
+        onLanguageChange={setLanguage}
       />
     </View>
   );

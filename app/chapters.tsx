@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { lightTheme, darkTheme } from '../src/constants/theme';
 import { loadBook } from '../src/lib/bookLoader';
 import { Book, ReadingProgress } from '../src/types';
+import { useI18n } from '../src/i18n';
 
 const PROGRESS_KEY = '@bivium_progress';
 
@@ -22,6 +23,7 @@ export default function ChaptersScreen() {
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
   const insets = useSafeAreaInsets();
+  const { t, language } = useI18n();
   
   const [book, setBook] = useState<Book | null>(null);
   const [progressMap, setProgressMap] = useState<Record<string, ReadingProgress>>({});
@@ -31,10 +33,8 @@ export default function ChaptersScreen() {
     loadData();
   }, [bookId]);
 
-  // Recargar progreso cuando la pantalla vuelve a estar en foco
   useFocusEffect(
     useCallback(() => {
-
       loadProgressOnly();
     }, [])
   );
@@ -42,14 +42,12 @@ export default function ChaptersScreen() {
   const loadProgressOnly = async () => {
     try {
       const stored = await AsyncStorage.getItem(PROGRESS_KEY);
-
       if (stored) {
         const allProgress: Record<string, ReadingProgress> = JSON.parse(stored);
-
         setProgressMap(allProgress);
       }
     } catch (error) {
-
+      // Silently handle error
     }
   };
 
@@ -67,13 +65,12 @@ export default function ChaptersScreen() {
         setProgressMap(allProgress);
       }
     } catch (error) {
-
+      // Silently handle error
     } finally {
       setLoading(false);
     }
   };
 
-  // Función para convertir chapter-2 → ch2
   const getShortChapterId = (chapterId: string) => {
     const match = chapterId.match(/chapter-(\d+)/);
     if (match) {
@@ -83,17 +80,13 @@ export default function ChaptersScreen() {
   };
 
   const handleSelectChapter = (chapterId: string) => {
-    // La key en progressMap incluye el bookId: "tod-in-venedig-ch2"
     const shortId = getShortChapterId(chapterId);
     const progressKey = `${bookId}-${shortId}`;
     const progress = progressMap[progressKey];
-
     
-    // Si hay progreso guardado, navegar al segmento específico
     const params: any = { bookId, chapterId };
     if (progress && progress.segmentIndex > 0) {
       params.segmentIndex = progress.segmentIndex.toString();
-
     }
     
     router.push({
@@ -122,7 +115,12 @@ export default function ChaptersScreen() {
 
   const formatLastRead = (timestamp: number) => {
     const date = new Date(timestamp);
-    return date.toLocaleDateString('de-DE', { 
+    const localeMap: Record<string, string> = {
+      'es': 'es-ES',
+      'de': 'de-DE',
+      'en': 'en-US',
+    };
+    return date.toLocaleDateString(localeMap[language] || 'es-ES', { 
       day: 'numeric', 
       month: 'short',
       hour: '2-digit',
@@ -130,25 +128,25 @@ export default function ChaptersScreen() {
     });
   };
 
-  const getChapterTitle = (chapterId: string, index: number) => {
-    // For now, use simple numbering. In the future, could load chapter metadata
+  const getChapterTitle = (index: number) => {
     const chapterNum = index + 1;
-    if (chapterNum === 1) return 'Erstes Kapitel';
-    if (chapterNum === 2) return 'Zweites Kapitel';
-    if (chapterNum === 3) return 'Drittes Kapitel';
-    if (chapterNum === 4) return 'Viertes Kapitel';
-    if (chapterNum === 5) return 'Fünftes Kapitel';
-    return `Kapitel ${chapterNum}`;
+    const chapterNames = t('chapters.chapterNames', {});
+    if (typeof chapterNames === 'object' && chapterNames[chapterNum]) {
+      return chapterNames[chapterNum];
+    }
+    return t('chapters.chapterNames.default', { number: chapterNum });
   };
 
-  const getChapterTitleEs = (chapterId: string, index: number) => {
+  const getChapterTitleEs = (index: number) => {
     const chapterNum = index + 1;
-    if (chapterNum === 1) return 'Capítulo Primero';
-    if (chapterNum === 2) return 'Capítulo Segundo';
-    if (chapterNum === 3) return 'Capítulo Tercero';
-    if (chapterNum === 4) return 'Capítulo Cuarto';
-    if (chapterNum === 5) return 'Capítulo Quinto';
-    return `Capítulo ${chapterNum}`;
+    const spanishTitles: Record<number, string> = {
+      1: 'Capítulo Primero',
+      2: 'Capítulo Segundo',
+      3: 'Capítulo Tercero',
+      4: 'Capítulo Cuarto',
+      5: 'Capítulo Quinto',
+    };
+    return spanishTitles[chapterNum] || `Capítulo ${chapterNum}`;
   };
 
   if (loading || !book) {
@@ -158,10 +156,10 @@ export default function ChaptersScreen() {
           <TouchableOpacity onPress={handleBack} style={styles.backButton}>
             <Ionicons name="arrow-back" size={24} color={theme.text} />
           </TouchableOpacity>
-          <Text style={[styles.title, { color: theme.text }]}>Kapitel</Text>
+          <Text style={[styles.title, { color: theme.text }]}>{t('chapters.title')}</Text>
         </View>
         <View style={styles.loadingContainer}>
-          <Text style={{ color: theme.textSecondary }}>Laden...</Text>
+          <Text style={{ color: theme.textSecondary }}>{t('chapters.loading')}</Text>
         </View>
       </View>
     );
@@ -177,7 +175,7 @@ export default function ChaptersScreen() {
           <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
             {book.title.de}
           </Text>
-          <Text style={[styles.title, { color: theme.text }]}>Kapitel</Text>
+          <Text style={[styles.title, { color: theme.text }]}>{t('chapters.title')}</Text>
         </View>
         <TouchableOpacity onPress={handleSearch} style={styles.searchButton}>
           <Ionicons name="search" size={22} color={theme.text} />
@@ -217,16 +215,16 @@ export default function ChaptersScreen() {
               
               <View style={styles.chapterInfo}>
                 <Text style={[styles.chapterTitle, { color: theme.text }]}>
-                  {getChapterTitle(chapterId, index)}
+                  {getChapterTitle(index)}
                 </Text>
                 <Text style={[styles.chapterTitleEs, { color: theme.textSecondary }]}>
-                  {getChapterTitleEs(chapterId, index)}
+                  {getChapterTitleEs(index)}
                 </Text>
                 
                 {progress && (
                   <View style={styles.progressInfo}>
                     <Text style={[styles.progressText, { color: theme.textMuted }]}>
-                      Segment {progress.segmentIndex}
+                      {t('chapters.segment')} {progress.segmentIndex}
                     </Text>
                     <Text style={[styles.lastReadText, { color: theme.textMuted }]}>
                       {formatLastRead(progress.lastReadAt)}

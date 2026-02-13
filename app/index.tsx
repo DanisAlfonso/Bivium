@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { lightTheme, darkTheme } from '../src/constants/theme';
 import { ReadingProgress } from '../src/types';
+import { useI18n } from '../src/i18n';
 
 interface Book {
   id: string;
@@ -34,7 +35,7 @@ const books: Book[] = [
     language: 'Deutsch',
     description: 'Ein Klassiker der deutschen Literatur über den Schriftsteller Gustav von Aschenbach und seine Reise nach Venedig.',
     chapters: 5,
-    totalSegments: 200, // Aproximado para el capítulo 1
+    totalSegments: 200,
   },
 ];
 
@@ -44,6 +45,7 @@ export default function LibraryScreen() {
   const colorScheme = useColorScheme();
   const theme = colorScheme === 'dark' ? darkTheme : lightTheme;
   const insets = useSafeAreaInsets();
+  const { t, language } = useI18n();
   const [progressMap, setProgressMap] = useState<Record<string, ReadingProgress>>({});
 
   useEffect(() => {
@@ -58,7 +60,7 @@ export default function LibraryScreen() {
         setProgressMap(allProgress);
       }
     } catch (error) {
-
+      // Silently handle error
     }
   };
 
@@ -71,7 +73,12 @@ export default function LibraryScreen() {
 
   const formatLastRead = (timestamp: number) => {
     const date = new Date(timestamp);
-    return date.toLocaleDateString('de-DE', { 
+    const localeMap: Record<string, string> = {
+      'es': 'es-ES',
+      'de': 'de-DE',
+      'en': 'en-US',
+    };
+    return date.toLocaleDateString(localeMap[language] || 'es-ES', { 
       day: 'numeric', 
       month: 'short',
       hour: '2-digit',
@@ -82,9 +89,9 @@ export default function LibraryScreen() {
   return (
     <View style={[styles.container, { backgroundColor: theme.background }]}>
       <View style={[styles.header, { paddingTop: insets.top + 20 }]}>
-        <Text style={[styles.title, { color: theme.text }]}>Bibliothek</Text>
+        <Text style={[styles.title, { color: theme.text }]}>{t('library.title')}</Text>
         <Text style={[styles.subtitle, { color: theme.textSecondary }]}>
-          Bilinguale Klassiker
+          {t('library.subtitle')}
         </Text>
       </View>
 
@@ -145,7 +152,7 @@ export default function LibraryScreen() {
                     </View>
                     <View style={styles.progressInfo}>
                       <Text style={[styles.progressText, { color: theme.textSecondary }]}>
-                        {progressPercent}% gelesen
+                        {progressPercent}{t('library.percentRead')}
                       </Text>
                       <Text style={[styles.lastReadText, { color: theme.textMuted }]}>
                         {formatLastRead(progress.lastReadAt)}
@@ -158,12 +165,12 @@ export default function LibraryScreen() {
                   <View style={styles.stat}>
                     <Ionicons name="book-outline" size={16} color={theme.textMuted} />
                     <Text style={[styles.statText, { color: theme.textMuted }]}>
-                      {book.chapters} Kapitel
+                      {book.chapters} {t('library.chapters')}
                     </Text>
                   </View>
                   <View style={[styles.readButton, { backgroundColor: theme.accent }]}>
                     <Text style={styles.readButtonText}>
-                      {progress && progressPercent > 0 ? 'Weiterlesen' : 'Lesen'}
+                      {progress && progressPercent > 0 ? t('library.continueReading') : t('library.read')}
                     </Text>
                     <Ionicons name="arrow-forward" size={16} color="#fff" />
                   </View>
@@ -176,10 +183,10 @@ export default function LibraryScreen() {
         <View style={[styles.comingSoon, { borderColor: theme.border }]}>
           <Ionicons name="time-outline" size={32} color={theme.textMuted} />
           <Text style={[styles.comingSoonText, { color: theme.textMuted }]}>
-            Weitere Werke folgen
+            {t('library.comingSoon')}
           </Text>
           <Text style={[styles.comingSoonSubtext, { color: theme.textMuted }]}>
-            Wir bereiten neue Klassiker für Sie vor
+            {t('library.comingSoonSubtitle')}
           </Text>
         </View>
       </ScrollView>
