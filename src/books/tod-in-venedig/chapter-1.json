@@ -1094,6 +1094,630 @@
         }
       ],
       "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s1",
+      "german": ["Es", "war", "Anfang", "Mai", "und,"],
+      "spanish": ["Era", "principios", "de", "mayo", "y,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2]},
+        {"de": 2, "es": [1, 2]},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4}
+      ],
+      "isParagraphStart": true
+    },
+    {
+      "id": "ch1-p3-s2",
+      "german": ["nach", "naßkalten", "Wochen,"],
+      "spanish": ["tras", "semanas", "húmedas", "y", "frías,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [2, 3, 4]},
+        {"de": 2, "es": 1}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s3",
+      "german": ["ein", "falscher", "Hochsommer", "eingefallen."],
+      "spanish": ["un", "falso", "verano", "había", "llegado."],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": [3, 4]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s4",
+      "german": ["Der", "Englische", "Garten,"],
+      "spanish": ["El", "Jardín", "Inglés,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 1}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s5",
+      "german": ["obgleich", "nur", "erst", "zart", "belaubt,"],
+      "spanish": ["aunque", "apenas", "recién", "tiernamente", "frondoso,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s6",
+      "german": ["war", "dumpfig", "wie", "im", "August"],
+      "spanish": ["estaba", "bochornoso", "como", "en", "agosto"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s7",
+      "german": ["und", "in", "der", "Nähe", "der", "Stadt", "voller", "Wagen", "und", "Spaziergänger", "gewesen."],
+      "spanish": ["y", "cerca", "de", "la", "ciudad", "lleno", "de", "carruajes", "y", "paseantes", "había", "estado."],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2]},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": [1, 2]},
+        {"de": 4, "es": 3},
+        {"de": 5, "es": 4},
+        {"de": 6, "es": 5},
+        {"de": 7, "es": 7},
+        {"de": 8, "es": 8},
+        {"de": 9, "es": 9},
+        {"de": 10, "es": [10, 11]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s8",
+      "german": ["Beim", "Aumeister,"],
+      "spanish": ["En", "el", "Aumeister,"],
+      "mapping": [
+        {"de": 0, "es": [0, 1]},
+        {"de": 1, "es": 2}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s9",
+      "german": ["wohin", "stillere", "und", "stillere", "Wege", "ihn", "geführt,"],
+      "spanish": ["adonde", "caminos", "cada", "vez", "más", "solitarios", "lo", "habían", "conducido,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 3, 5]},
+        {"de": 2, "es": [2, 4]},
+        {"de": 3, "es": [1, 3, 5]},
+        {"de": 4, "es": 1},
+        {"de": 5, "es": 6},
+        {"de": 6, "es": [7, 8]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s10",
+      "german": ["hatte", "Aschenbach", "eine", "kleine", "Weile", "den", "volkstümlich", "belebten", "Wirtsgarten", "überblickt,"],
+      "spanish": ["había", "Aschenbach", "durante", "un", "pequeño", "rato", "contemplado", "el", "popular", "y", "animado", "jardín", "de", "la", "taberna,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": [2, 3]},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 5},
+        {"de": 5, "es": 7},
+        {"de": 6, "es": 8},
+        {"de": 7, "es": [9, 10]},
+        {"de": 8, "es": [11, 12, 13, 14]},
+        {"de": 9, "es": 6}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s11",
+      "german": ["an", "dessen", "Rand", "einige", "Droschken", "und", "Equipagen", "hielten,"],
+      "spanish": ["en", "cuyo", "borde", "algunas", "calesas", "y", "carruajes", "se", "detenían,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 6},
+        {"de": 7, "es": [7, 8]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s12",
+      "german": ["hatte", "von", "dort", "bei", "sinkender", "Sonne", "seinen", "Heimweg", "außerhalb", "des", "Parks", "über", "die", "offene", "Flur", "genommen"],
+      "spanish": ["había", "desde", "allí", "con", "el", "sol", "poniente", "tomado", "su", "camino", "de", "vuelta", "fuera", "del", "parque", "por", "el", "campo", "abierto"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2]},
+        {"de": 2, "es": [1, 2]},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 6},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": [8, 9, 10, 11]},
+        {"de": 7, "es": [8, 9, 10, 11]},
+        {"de": 8, "es": [12, 13]},
+        {"de": 9, "es": [12, 13]},
+        {"de": 10, "es": 14},
+        {"de": 11, "es": 15},
+        {"de": 12, "es": 16},
+        {"de": 13, "es": [17, 18]},
+        {"de": 14, "es": [17, 18]},
+        {"de": 15, "es": 7}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s13",
+      "german": ["und", "erwartete,"],
+      "spanish": ["y", "esperaba,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s14",
+      "german": ["da", "er", "sich", "müde", "fühlte"],
+      "spanish": ["ya", "que", "se", "sentía", "cansado"],
+      "mapping": [
+        {"de": 0, "es": [0, 1]},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 3}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s15",
+      "german": ["und", "über", "Föhring", "Gewitter", "drohte,"],
+      "spanish": ["y", "sobre", "Föhring", "tormenta", "amenazaba,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s16",
+      "german": ["am", "Nördlichen", "Friedhof", "die", "Tram,"],
+      "spanish": ["en", "el", "Cementerio", "Norte", "el", "tranvía,"],
+      "mapping": [
+        {"de": 0, "es": [0, 1]},
+        {"de": 1, "es": [2, 3]},
+        {"de": 2, "es": [2, 3]},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 5}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p3-s17",
+      "german": ["die", "ihn", "in", "gerader", "Linie", "zur", "Stadt", "zurückbringen", "sollte."],
+      "spanish": ["que", "lo", "llevase", "de", "regreso", "a", "la", "ciudad", "en", "línea", "recta."],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 8},
+        {"de": 3, "es": 9},
+        {"de": 4, "es": 10},
+        {"de": 5, "es": [5, 6]},
+        {"de": 6, "es": 7},
+        {"de": 7, "es": [2, 3, 4]},
+        {"de": 8, "es": [2, 3, 4]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s1",
+      "german": ["Zufällig", "fand", "er", "den", "Halteplatz", "und", "seine", "Umgebung", "von", "Menschen", "leer."],
+      "spanish": ["Por", "casualidad", "encontró", "el", "lugar", "de", "espera", "y", "su", "alrededor", "de", "gente", "vacío."],
+      "mapping": [
+        {"de": 0, "es": [0, 1]},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": [4, 5, 6]},
+        {"de": 5, "es": 7},
+        {"de": 6, "es": 8},
+        {"de": 7, "es": [9, 10, 11]},
+        {"de": 8, "es": [9, 10, 11]},
+        {"de": 9, "es": [9, 10, 11]},
+        {"de": 10, "es": 12}
+      ],
+      "isParagraphStart": true
+    },
+    {
+      "id": "ch1-p4-s2",
+      "german": ["Weder", "auf", "der", "gepflasterten", "Ungererstraße,"],
+      "spanish": ["Ni", "en", "la", "empedrada", "Ungererstraße,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": 4}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s3",
+      "german": ["deren", "Schienengeleise", "sich", "einsam", "gleißend", "gegen", "Schwabing", "erstreckten,"],
+      "spanish": ["cuyos", "raíles", "de", "vías", "se", "extendían", "solitarios", "deslumbrantes", "hacia", "Schwabing,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2, 3]},
+        {"de": 2, "es": 4},
+        {"de": 3, "es": 6},
+        {"de": 4, "es": 7},
+        {"de": 5, "es": 8},
+        {"de": 6, "es": 9},
+        {"de": 7, "es": 5}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s4",
+      "german": ["noch", "auf", "der", "Föhringer", "Chaussee"],
+      "spanish": ["ni", "en", "la", "carretera", "de", "Föhring"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": [3, 4, 5]},
+        {"de": 4, "es": [3, 4, 5]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s5",
+      "german": ["war", "ein", "Fuhrwerk", "zu", "sehen;"],
+      "spanish": ["era", "posible", "ver", "un", "vehículo", "de", "tracción;"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2, 3]},
+        {"de": 2, "es": [4, 5, 6]},
+        {"de": 3, "es": [1, 2, 3]},
+        {"de": 4, "es": [1, 2, 3]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s6",
+      "german": ["hinter", "den", "Zäunen", "der", "Steinmetzereien,"],
+      "spanish": ["detrás", "de", "las", "cercas", "de", "los", "talleres", "de", "cantería,"],
+      "mapping": [
+        {"de": 0, "es": [0, 1]},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": [4, 5]},
+        {"de": 4, "es": [6, 7, 8]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s7",
+      "german": ["wo", "zu", "Kauf", "stehende", "Kreuze,", "Gedächtnistafeln", "und", "Monumente", "ein", "zweites,", "unbehaustes", "Gräberfeld", "bilden,"],
+      "spanish": ["donde", "cruces,", "lápidas", "y", "monumentos", "a", "la", "venta", "formaban", "un", "segundo", "campo", "de", "tumbas", "deshabitado,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [5, 6, 7]},
+        {"de": 2, "es": [5, 6, 7]},
+        {"de": 3, "es": [5, 6, 7]},
+        {"de": 4, "es": 1},
+        {"de": 5, "es": 2},
+        {"de": 6, "es": 3},
+        {"de": 7, "es": 4},
+        {"de": 8, "es": 9},
+        {"de": 9, "es": 10},
+        {"de": 10, "es": 14},
+        {"de": 11, "es": [11, 12, 13]},
+        {"de": 12, "es": 8}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s8",
+      "german": ["regte", "sich", "nichts,"],
+      "spanish": ["no", "se", "movía", "nada,"],
+      "mapping": [
+        {"de": 0, "es": 2},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 0}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s9",
+      "german": ["und", "das", "byzantinische", "Bauwerk", "der", "Aussegnungshalle", "gegenüber", "lag", "schweigend", "im", "Abglanz", "des", "scheidenden", "Tages."],
+      "spanish": ["y", "el", "edificio", "bizantino", "de", "la", "sala", "de", "bendición", "enfrente", "yacía", "en", "silencio", "en", "el", "reflejo", "del", "día", "que", "se", "alejaba."],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 2},
+        {"de": 4, "es": [4, 5, 6, 7, 8]},
+        {"de": 5, "es": [4, 5, 6, 7, 8]},
+        {"de": 6, "es": 9},
+        {"de": 7, "es": 10},
+        {"de": 8, "es": [11, 12]},
+        {"de": 9, "es": 13},
+        {"de": 10, "es": 15},
+        {"de": 11, "es": 16},
+        {"de": 12, "es": [17, 18, 19, 20]},
+        {"de": 13, "es": 14}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s10",
+      "german": ["Ihre", "Stirnseite,"],
+      "spanish": ["Su", "fachada", "frontal,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s11",
+      "german": ["mit", "griechischen", "Kreuzen", "und", "hieratischen", "Schildereien", "in", "lichten", "Farben", "geschmückt,"],
+      "spanish": ["adornada", "con", "cruces", "griegas", "y", "jeroglíficos", "en", "claros", "colores,"],
+      "mapping": [
+        {"de": 0, "es": 1},
+        {"de": 1, "es": 3},
+        {"de": 2, "es": 2},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 5},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": 6},
+        {"de": 7, "es": 7},
+        {"de": 8, "es": 8},
+        {"de": 9, "es": 0}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s12",
+      "german": ["weist", "überdies", "symmetrisch", "angeordnete", "Inschriften", "in", "Goldlettern", "auf,"],
+      "spanish": ["muestra", "además", "inscripciones", "simétricamente", "dispuestas", "en", "letras", "doradas,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 2},
+        {"de": 5, "es": 5},
+        {"de": 6, "es": [6, 7]},
+        {"de": 7, "es": 0}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s13",
+      "german": ["ausgewählte,", "das", "jenseitige", "Leben", "betreffende", "Schriftworte,"],
+      "spanish": ["palabras", "escritas", "selectas", "relativas", "a", "la", "vida", "de", "ultratumba,"],
+      "mapping": [
+        {"de": 0, "es": [0, 1, 2]},
+        {"de": 1, "es": [5, 6, 7, 8]},
+        {"de": 2, "es": [5, 6, 7, 8]},
+        {"de": 3, "es": [5, 6, 7, 8]},
+        {"de": 4, "es": 3},
+        {"de": 5, "es": [0, 1, 2]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s14",
+      "german": ["wie", "etwa:"],
+      "spanish": ["como", "por", "ejemplo:"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s15",
+      "german": ["»Sie", "gehen", "ein", "in", "die", "Wohnung", "Gottes«"],
+      "spanish": ["»Entran", "en", "la", "morada", "de", "Dios«"],
+      "mapping": [
+        {"de": [0, 1, 2], "es": [0, 1]},
+        {"de": 3, "es": 1},
+        {"de": 4, "es": 2},
+        {"de": 5, "es": [3, 4]},
+        {"de": 6, "es": 5}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s16",
+      "german": ["oder:"],
+      "spanish": ["o:"],
+      "mapping": [
+        {"de": 0, "es": 0}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s17",
+      "german": ["»Das", "ewige", "Licht", "leuchte", "ihnen«;"],
+      "spanish": ["»La", "luz", "eterna", "brille", "para", "ellos«;"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 1},
+        {"de": 3, "es": 3},
+        {"de": 4, "es": [4, 5]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s18",
+      "german": ["und", "der", "Wartende", "hatte", "während", "einiger", "Minuten", "eine", "ernste", "Zerstreuung", "darin", "gefunden,"],
+      "spanish": ["y", "el", "que", "esperaba", "había", "encontrado", "en", "ello", "una", "seria", "distracción", "durante", "algunos", "minutos,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1},
+        {"de": 2, "es": [2, 3]},
+        {"de": 3, "es": 4},
+        {"de": 4, "es": 11},
+        {"de": 5, "es": 12},
+        {"de": 6, "es": 13},
+        {"de": 7, "es": 8},
+        {"de": 8, "es": 9},
+        {"de": 9, "es": 10},
+        {"de": 10, "es": [6, 7]},
+        {"de": 11, "es": 5}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s19",
+      "german": ["die", "Formeln", "abzulesen"],
+      "spanish": ["en", "leer", "las", "fórmulas"],
+      "mapping": [
+        {"de": 0, "es": 2},
+        {"de": 1, "es": 3},
+        {"de": 2, "es": [0, 1]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s20",
+      "german": ["und", "sein", "geistiges", "Auge", "in", "ihrer", "durchscheinenden", "Mystik", "sich", "verlieren", "zu", "lassen,"],
+      "spanish": ["y", "dejar", "perderse", "su", "ojo", "mental", "en", "su", "traslúcida", "mística"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 3},
+        {"de": 2, "es": [4, 5]},
+        {"de": 3, "es": [4, 5]},
+        {"de": 4, "es": 6},
+        {"de": 5, "es": 7},
+        {"de": 6, "es": 8},
+        {"de": 7, "es": 9},
+        {"de": 8, "es": 2},
+        {"de": 9, "es": 2},
+        {"de": 10, "es": [0, 1]},
+        {"de": 11, "es": [0, 1]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s21",
+      "german": ["als", "er,"],
+      "spanish": ["cuando", "él,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 1}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s22",
+      "german": ["aus", "seinen", "Träumereien", "zurückkehrend,"],
+      "spanish": ["volviendo", "de", "sus", "ensoñaciones,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2]},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 0}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s23",
+      "german": ["im", "Portikus,"],
+      "spanish": ["en", "el", "pórtico,"],
+      "mapping": [
+        {"de": 0, "es": [0, 1]},
+        {"de": 1, "es": 2}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s24",
+      "german": ["oberhalb", "der", "beiden", "apokalyptischen", "Tiere,"],
+      "spanish": ["encima", "de", "los", "dos", "animales", "apocalípticos,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": [1, 2]},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": [4, 5]},
+        {"de": 4, "es": [4, 5]}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s25",
+      "german": ["welche", "die", "Freitreppe", "bewachen,"],
+      "spanish": ["que", "guardan", "la", "escalinata,"],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": 3},
+        {"de": 3, "es": 1}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s26",
+      "german": ["einen", "Mann", "bemerkte,"],
+      "spanish": ["notó", "a", "un", "hombre,"],
+      "mapping": [
+        {"de": 0, "es": [1, 2]},
+        {"de": 1, "es": 3},
+        {"de": 2, "es": 0}
+      ],
+      "isParagraphStart": false
+    },
+    {
+      "id": "ch1-p4-s27",
+      "german": ["dessen", "nicht", "ganz", "gewöhnliche", "Erscheinung", "seinen", "Gedanken", "eine", "völlig", "andere", "Richtung", "gab."],
+      "spanish": ["cuya", "apariencia", "no", "del", "todo", "ordinaria", "dio", "a", "sus", "pensamientos", "una", "dirección", "completamente", "distinta."],
+      "mapping": [
+        {"de": 0, "es": 0},
+        {"de": 1, "es": 2},
+        {"de": 2, "es": [3, 4]},
+        {"de": 3, "es": 5},
+        {"de": 4, "es": 1},
+        {"de": 5, "es": [8, 9]},
+        {"de": 6, "es": [8, 9]},
+        {"de": 7, "es": 10},
+        {"de": 8, "es": [12, 13]},
+        {"de": 9, "es": 11},
+        {"de": 10, "es": 11},
+        {"de": 11, "es": 6}
+      ],
+      "isParagraphStart": false
     }
   ]
 }
